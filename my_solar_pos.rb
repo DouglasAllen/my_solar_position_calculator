@@ -22,6 +22,9 @@ DME = [280.4664576, 36_000.76982779, 0.00030328,
 DGM = [0.014506, 4612.156534, 1.3915817,
        -0.00000044, -0.000029956, -0.0000000368].freeze
 DTA = [0, 2400.051336906897, 2.586222e-05, -1.7222e-08, 0, 0].freeze
+DOA = [125.044555, -1934.13626197, 0.0020756, 5.76555e-07,
+       1.649722e-08, 0].freeze
+EDA = [23.4392966666667, 0.0127778, 0.00059 / 60.0, 0, 0, 0].freeze
 
 def lambda_array(t, d)
   LA.call(t, d)
@@ -31,11 +34,11 @@ def jct(ajd)
   (ajd - DJ00) / DJC
 end
 
-def mls(ajd)
-  lambda_array(jct(ajd), DME)
+def mls(t)
+  lambda_array(t, DME)
 end
 
-def ma(t)
+def mas(t)
   (lambda_array(t, DMA) * D2R) % D2PI
 end
 
@@ -43,9 +46,9 @@ EQA = [1.914600, -0.004817, -0.000014, 0, 0, 0].freeze
 EQA1 = [0.019993, -0.000101, 0, 0, 0, 0].freeze
 
 def eqc(t)
-  lambda_array(t, EQA) * sin(ma(t)) +
-    lambda_array(t, EQA1) * sin(2 * ma(t)) +
-    0.000290 * sin(3 * ma(t))
+  lambda_array(t, EQA) * sin(mas(t)) +
+    lambda_array(t, EQA1) * sin(2 * mas(t)) +
+    0.000290 * sin(3 * mas(t))
 end
 
 def tl(ajd)
@@ -53,13 +56,11 @@ def tl(ajd)
 end
 
 def omega(ajd)
-  doa = [125.044555, -1934.13626197, 0.0020756, 5.76555e-07, 1.649722e-08, 0]
-  lambda_array(jct(ajd), doa) * D2R
+  lambda_array(jct(ajd), DOA) * D2R
 end
 
 def epsilon(ajd)
-  ed = [23.4392966666667, 0.0127778, 0.00059 / 60.0, 0, 0, 0]
-  (lambda_array(jct(ajd), ed) + 0.00256 * cos(omega(ajd))) * D2R
+  (lambda_array(jct(ajd), EDA) + 0.00256 * cos(omega(ajd))) * D2R
 end
 
 def lambda(ajd)
@@ -151,30 +152,26 @@ end
 @longitude = -88.743
 
 # jd = DateTime.new(2017, 3, 9).jd.to_f
-ajd = DateTime.now.ajd.to_f
 # p ajd = DateTime.now.ajd.to_f.floor
 # ajd = jd - @longitude / 360 + -10.39 / 1440
-puts DateTime.jd(ajd + 0.5)
 
-puts theta(ajd) * 15
-puts gmst(ajd) * R2D
-puts theta_ut1(ajd) % 360
-puts lst(ajd)
-# puts delta(ajd) * R2D
-# puts altitude(ajd)
-# puts azimuth(ajd)
-
-loop do
+# loop do
   ajd = DateTime.now.ajd.to_f
+  puts DateTime.jd(ajd + 0.5)
+
+  # puts delta(ajd) * R2D
+  # puts altitude(ajd)
+  # puts azimuth(ajd)
   #  ajd = jd - @longitude / 360
   #  puts lst(ajd) / 15
+  #  puts lst(ajd)
   #  puts lmst(ajd) / 15
   #  puts theta_ut1(ajd)
-  puts theta_ut1(ajd) % 360
-  puts theta(ajd) * 15
-  puts gmst(ajd) * R2D
-  # puts lst(ajd)
+  puts "UT1 GMST #{theta_ut1(ajd) % 360}"
+  puts "Mean Equinox #{theta(ajd) * 15}"
+  puts "GMST #{gmst(ajd) * R2D}"
+  puts "LMST #{lst(ajd)}"
   # puts altitude(ajd)
   # puts azimuth(ajd)
   sleep 1
-end
+# end
