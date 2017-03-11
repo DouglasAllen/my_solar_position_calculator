@@ -1,0 +1,326 @@
+<html>
+<head>
+<title>Sidereal Clock</title>
+<link rel="stylesheet" type="text/css" href="http://abecedarical.com/standard.css" >
+<SCRIPT language=JavaScript SRC="http://abecedarical.com/feedback.js" ></SCRIPT>
+
+<script language=JavaScript>
+<!-- hide
+
+function getTime() 
+{
+    var now = new Date();                                   // from computer clock
+
+    var hour   = now.getUTCHours();
+    var minute = now.getUTCMinutes();
+    var second = now.getUTCSeconds();
+
+    var beg = new Date( now.getUTCFullYear() - 1, 11, 31 ); // last day of previous year
+    var day = Math.floor( ( now - beg ) / 86400000 );
+ 
+    document.calc.day.value = day;
+    document.calc.utc.value = d2( hour ) + " : " + d2( minute ) + " : " + d2( second );
+
+    var mst = getMST( now, 0.0 );                           // in degrees 
+    var ras = mst;                                          // right ascension
+    mst  = mst / 15.0;                                      // time units
+
+    // right ascension of vernal equinox
+    var deg = Math.floor( ras );
+
+    ras = ras - deg;
+    ras = ras * 60;
+    var min = Math.floor( ras );
+
+    ras = ras - min;
+    ras = ras * 60;
+    var sec = Math.floor( ras ); 
+
+    // sidereal time
+    hour = Math.floor( mst );
+        
+    mst  = mst - hour;
+    mst  = mst * 60;
+    minute = Math.floor( mst );
+        
+    mst  = mst - minute;
+    mst  = mst * 60;
+    second = Math.floor( mst );     
+    
+    document.calc.deg.value = d2( deg ) + "� " + d2( min ) + "\' " + d2( sec ) + "\"";
+    document.calc.gst.value = d2( hour ) + " : " + d2( minute ) + " : " + d2( second );
+
+    newtime = window.setTimeout("getTime();", 1000);
+}
+
+function d2( n )
+{
+    if( n < 10 )
+        return "0" + n;
+
+    return n;
+}
+
+/*
+** "getMST" computes Mean Sidereal Time in units of degrees. Use lon = 0 to
+** get the Greenwich MST.
+**
+** returns: time in degrees
+*/
+function getMST( now, lon )
+{
+    var year   = now.getUTCFullYear();
+    var month  = now.getUTCMonth() + 1;
+    var day    = now.getUTCDate();
+    var hour   = now.getUTCHours();
+    var minute = now.getUTCMinutes();
+    var second = now.getUTCSeconds();
+
+    // 1994 June 16th at 18h UT
+    // days since J2000: -2024.75
+    // GMST: 174.77111347427126
+    //       11h 39m 5.0672s 
+    // year   = 1994;
+    // month  = 6;
+    // day    = 16;
+    // hour   = 18;
+    // minute = 0; 
+    // second = 0; 
+
+    if( month == 1 || month == 2 )
+    {
+	year = year - 1;
+	month = month + 12;
+    }
+
+    var a = Math.floor( year/100 );
+    var b = 2 - a + Math.floor( a/4 );
+
+    var c = Math.floor(365.25 * year);
+    var d = Math.floor(30.6001 * (month + 1));
+
+    // days since J2000.0   
+    var jd = b + c + d - 730550.5 + day + (hour + minute/60.0 + second/3600.0)/24.0;
+    
+    var jt   = jd/36525.0;                   // julian centuries since J2000.0         
+    var GMST = 280.46061837 + 360.98564736629*jd + 0.000387933*jt*jt - jt*jt*jt/38710000 + lon;           
+    if( GMST > 0.0 )
+    {
+        while( GMST > 360.0 )
+            GMST -= 360.0;
+    }
+    else
+    {
+        while( GMST < 0.0 )
+            GMST += 360.0;
+    }
+        
+    return GMST;
+}
+// unhide -->
+</script>
+</head>
+<body bgcolor="white" text="black" onLoad="getTime()">
+
+<!--[TOP]-->
+<center>
+<!-- google -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-8195248024094868";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js" >
+</script>
+<!-- google -->
+</center>
+<!--[END]-->
+
+<hr>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- abecedarical.com_728_90 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-3632733797738400"
+     data-ad-slot="9283370188"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><div class="addthis_toolbox addthis_default_style">
+<a href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c2dcb235d3d5f6f" class="addthis_button_compact" rel="nofollow">Share</a>
+|<a href="http://abecedarical.com/index.html" > home </a>
+|<a href="http://abecedarical.com/javascript/scriptindex.html" > contents </a>
+|<a href="#top" onClick=feedback()> send comment </a>
+|<a href="#top" onClick=send_to()> send link </a>
+|<a href="#top" onClick=bookmark()> add bookmark </a>|
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4c2dcb235d3d5f6f" ></script>
+<hr>
+
+<h2>Sidereal Clock</h2><center><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- abecedarical.com_336_280 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-3632733797738400"
+     data-ad-slot="4853170588"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></center>
+
+<H4>by Stephen R. Schmitt</H4>
+
+<center>
+<form name="calc">
+<blockquote>
+<table border=0>
+<tr>
+<td colspan=2><b>Coordinated Universal Time (UTC)</b></td>
+</tr>
+<tr>
+<td>Day of Year</td>
+<td>Time</td>
+</tr>
+<tr>
+<!--DAY-->
+<td><input type="text" name="day" value="0" size=4>
+<!--Time-->
+<td><input type="text" name="utc" value="0" size=10>
+</tr>
+<tr>
+<td colspan=2><b>Greenwich Mean Sidereal Time (GMST)</b></td>
+</tr>
+<tr>
+<td>Hour Angle</td>
+<td>Time</td>
+</tr>
+<tr>
+<!--HOUR ANGLE-->
+<td><input type="text" name="deg" value="0" size=10>
+<!--Time-->
+<td><input type="text" name="gst" value="0" size=10>
+</tr>
+</table>
+</blockquote>
+</form>
+</center>
+
+<hr>
+
+<h3><a NAME="contents">Contents</a></h3>
+<ol>
+<li><a HREF="#about">About</a><br>
+<li><a HREF="#the source code">The source code</a><br>
+<li><a HREF="#discussion">Discussion</a><br> 
+</ol>
+<hr>
+
+<h4>1. <a NAME="about">About</a></h4>
+
+<p>This Sidereal Clock uses your computer clock's definition of Coordinated Universal Time (UTC) to compute the corresponding Mean Sidereal Time at the Greenwich meridian of 0&deg: Longitude.
+
+<p>The program operates automatically. The display is only as accurate as your computer's clock and it assumes that your clock is setup to maintain UTC. Otherwise, the display will be incorrect.
+
+<p>The upper display shows the current day of the year at Greenwich in the leftmost column. The leftmost column of the lower display shows the hour angle of the Vernal Equinox in units of degrees. The sidereal time is the same hour angle expressed in time units.
+
+<p>Return to <a HREF="#contents">Contents</a>
+
+<hr>
+
+<h4>2. <a NAME="the source code">The source code</a></h4>
+
+<p>The Java Script source code for this program can be viewed by using the View|Source command of your web browser.
+
+<p>You may use or modify this source code in any way you find useful, provided that you agree that the author has no warranty, obligations or liability. You must determine the suitablility of this source code for your use.
+
+<p>Return to <a HREF="#contents">Contents</a>
+
+<hr>
+
+<h4>3. <a NAME="discussion">Discussion</a></h4>
+
+<p>The mean sidereal time at zero longitude is often called Greenwich Mean Sidereal Time or <i>GMST</i>. The formula below is based on Meeus<sup>[1]</sup> formula 11.4 with terms in the square and the cube of the time left out. <i>GMST</i> is in degrees!
+
+<p><table align="center" cellpadding="0" cellspacing="0">
+<tr align="center">
+ <td nowrap="nowrap"><i>GMST</i> = 280.46061837 + 360.98564736629 <i>d</i></td>
+</tr>
+</table>
+
+where
+
+<p><table align="center" cellpadding="0" cellspacing="0">
+<tr align="center">
+ <td nowrap="nowrap"><i>d</i> = <i>UT</i></td>
+</tr>
+</table>
+
+<p>in days since J2000.0, including parts of a day. Multiples of 360 are subtracted to bring the answer into the range 0 to 360 degrees.
+
+<p>To get the sidereal time at your longitude, known as Local Mean Sidereal Time, just add your longitude in degrees, taking East as positive, so 
+
+<p><table align="center" cellpadding="0" cellspacing="0">
+<tr align="center">
+ <td nowrap="nowrap"><i>LMST</i> = 280.46061837 + 360.98564736629 <i>d</i> + Longitude</td>
+</tr>
+</table>
+
+<p>and again, subtract multiples of 360 to bring the answer into the range 0 to 360. To convert into time units divide the time in degrees by 15.0 to get the time in hours. Then, multiply the fractional part of hours by 60 to get minutes. Finally, multiply the fractional part of minutes by 60 to get seconds.
+
+<h3>References</h3>
+<ol>
+<li>Astronomical Algorithms, Meeus
+<li>Practical Astronomy with your Calculator
+</ol>
+
+<p>Return to <a HREF="#contents">Contents</a>
+
+<hr>
+<center><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- abecedarical.com_336_280 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-3632733797738400"
+     data-ad-slot="4853170588"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></center><div class="addthis_toolbox addthis_default_style">
+<a href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c2dcb235d3d5f6f" class="addthis_button_compact" rel="nofollow">Share</a>
+|<a href="http://abecedarical.com/index.html" > home </a>
+|<a href="http://abecedarical.com/javascript/scriptindex.html" > contents </a>
+|<a href="#top" onClick=feedback()> send comment </a>
+|<a href="#top" onClick=send_to()> send link </a>
+|<a href="#top" onClick=bookmark()> add bookmark </a>|
+</div>
+<hr>
+
+<!--[BOTTOM]-->
+<center>
+<!-- google -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-8195248024094868";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js" >
+</script>
+<!-- google -->
+</center>
+<!--[END]-->
+
+<hr>
+Copyright &copy; 2004, Stephen R. Schmitt
+<center><!--noindex--><!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click' "+
+    "target=_blank><img src='//counter.yadro.ru/hit?t38.6;r"+
+    escape(document.referrer)+((typeof(screen)=="undefined")?"":
+        ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+            screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+    ";"+Math.random()+
+    "' alt='' title='LiveInternet' "+
+    "border='0' width='31' height='31'><\/a>")
+//--></script><!--/LiveInternet-->
+<!--/noindex--></center></body>
+</html>
