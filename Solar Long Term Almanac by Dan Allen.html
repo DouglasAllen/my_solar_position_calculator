@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://dkallen.org/AwkS2K.htm -->
+<html><!--
+Created:  Tue Feb 27 18:59:22 2001
+Modified: 5 Sep 2003, 8 Jul 2016.
+--><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>Solar Long Term Almanac by Dan Allen</title>
+</head>
+<body bgcolor="yellow">
+<h1>Solar Long Term Almanac</h1>
+<hr>
+<p>
+This is an <a href="http://dkallen.org/Awk.htm">Awk</a> script to calculate 
+the position of the sun for a given date and time and location.
+</p><p></p><hr><p>
+</p><pre># s2k.awk - Sun 2000 from Meeus Astronomical Algorithms
+# s2k is Copyright Daniel K. Allen, 2000-2003.
+# All rights reserved.
+#
+#  6 Dec 2000 - Created by Dan Allen.
+# 24 Dec 2000 - Updated to 2nd edition of Meeus, p. 163.
+#  3 Jan 2001 - Fixed bug in azimuth calculation; equation of time added.
+#  3 Jul 2001 - Time zone set for west coast by a month heuristic.
+#  5 Jul 2001 - Ported to Mac OS X, added tz and current date/time.
+#  2 Sep 2001 - More accurate Equation of Time.
+# 21 Mar 2002 - eqt &amp; sunLong shown mod 360.
+# 14 Oct 2002 - Uses apparent longitude and obliquity of the ecliptic for greater accuracy.
+#  5 Sep 2003 - Removed external tool dependency.
+#  5 May 2004 - Prints sunLong, not appLong.
+# 21 Jun 2016 - Handles US TZs approximately; loc now West Yarmouth.
+
+
+BEGIN { # all arguments and results are in decimal degrees
+	CONVFMT = OFMT = "%10.6f"
+	PI = 4*atan2(1,1)
+	D2R = PI/180
+	R2D = 180/PI
+	if (lat == "") lat = 41.6441  # your default latitude here
+	if (lon == "") lon = 70.2247  # your default longitude here
+	if (ARGC == 2 &amp;&amp; (index(ARGV[1],"/") || index(ARGV[1],".")))
+		t = J2000(ARGV[1],12)
+	else if (ARGC == 3 &amp;&amp; (index(ARGV[1],"/") || index(ARGV[1],".")))
+		t = J2000(ARGV[1],ARGV[2])
+	else if (ARGC == 4) {
+		tz = ARGV[3]
+		t = J2000(ARGV[1],ARGV[2])
+	}
+	else {
+		print "Usage: awk -f s2k mm.ddyyyy | mm/dd/yyyy [hh[:mm[:ss]]] [tz]   Sun 2000"
+		exit 1
+	}
+	l = Mod(280.46646 + 36000.76983*t + 0.0003032*t*t,360) # mean longitude
+	m = Mod(357.52911 + 35999.05029*t + -0.0001537*t*t,360) # mean anomaly
+	e = (0.016708634 + -0.000042037*t + -0.0000001267*t*t) # eccentricity
+	c = (1.914602 + -0.004817*t + -0.000014*t*t) * Sin(m) # equation of center
+	c += (0.019993 + -0.000101*t) * Sin(m*2)
+	c += (0.000289) * Sin(m*3)
+	sunLong = Mod(l + c,360)
+	trueAnom = m + c
+	radius = (1.000001018 * (1 - e*e)) / (1 + e * Cos(trueAnom))
+	ecliptic = (84381.448 + -46.815*t - 0.00059*t*t + 0.001813*t*t*t) / 3600
+	omega = 125.04 - 1934.136*t
+	apparentLong = sunLong - 0.00569 - 0.00478*Sin(omega)
+	apparentEcliptic = ecliptic + 0.00256 * Cos(omega)
+	ra = Mod(ATan2(Cos(apparentEcliptic)*Sin(apparentLong),Cos(apparentLong)),360)
+	dec = ASin(Sin(apparentEcliptic)*Sin(apparentLong))
+	gst = (280.46061837 + 0.000387933*t*t + -2.58331180573E-8*t*t*t)
+	gst += t*36525*360.985647366
+	gst = Mod(gst,360)
+	lha = gst - lon - ra
+	eqt = (sunLong - ra) - (sunLong - l) # positive values occur before UT
+	if (eqt &gt; 300) eqt = eqt - 360
+	alt = ASin(Sin(lat) * Sin(dec) + Cos(lat) * Cos(dec) * Cos(lha))
+	az = 180+ATan2(Sin(lha),(Cos(lha) * Sin(lat) - Cos(lat)*Tan(dec)))
+	print " Lon:",lon," Lat:",lat
+	print "SnLo:",sunLong,  "   R:",radius
+	print " GHA:",Mod(lha+lon,360)," EQT:",eqt
+	print "  RA:",ra, " Dec:",dec
+	print "  AZ:",az, " Alt:",alt
+}
+
+
+function Floor(x)  { return x &lt; 0 ? int(x) - 1 : int(x) }
+function Mod(x,y)  { return x - y * Floor(x/y) }
+function Sin(x)    { return sin(x*D2R) }
+function Cos(x)    { return cos(x*D2R) }
+function Tan(x)    { return Sin(x)/Cos(x) }
+function ASin(x)   { return atan2(x,sqrt(1 - x * x))*R2D }
+function ATan2(y,x){ return atan2(y,x)*R2D }
+
+
+function J2000(date,time,      m,d,y,a) {
+	if (index(date,"/") &gt; 0) {      # mm/dd/yy or mm/dd/yyyy - Y2K compatible
+		split(date,a,"/")
+		m = a[1]
+		d = a[2]
+		y = a[3] &lt; 50 ? 2000 + a[3] : a[3] &lt; 100 ? 1900 + a[3] : a[3]
+		delete a
+	}
+	else if (index(date,".") &gt; 0) { # mm.ddyyyy - HP calculator compatible
+		m = int(date)
+		d = int((date - m)*100)
+		y = int(1000000*(date - int(date) - d/100)+0.5)
+	}
+	if (tz == "") { # approximate tz code
+		tz = m &gt; 3 &amp;&amp; m &lt; 11 ? 4 : 5 # EDT or EST
+		if (lon &gt; 87) tz++ # CDT or CST
+		if (lon &gt; 102) tz++ # MDT or MST
+		if (lon &gt; 114.5) tz++ # PDT or PST
+	}
+	split(time,a,":")
+	print "Time:",y,m,d,a[1],a[2],a[3]," TZ:",tz
+	return (Julian(y,m,d,a[1]+tz,a[2],a[3]) - Julian(2000,1,1,12,0,0))/36525
+}
+
+
+function Julian(year,month,day,hr,min,sec,     m,y,a,b,jd)
+{
+	if (month &lt;= 2) { y = year - 1; m = month + 12 }
+	else { y = year; m = month }
+	a = int(y/100)
+	if (y &lt; 1582 || y == 1582 &amp;&amp; (m &lt; 10 || m == 10 &amp;&amp; day &lt;=4)) b = 0
+	else b = 2 - a + int(a/4)
+	jd = int(365.25*(y+4716)) + int(30.6001*(m+1)) + day + b - 1524.5
+	jd += (hr-12)/24.0 + min/(24.0*60) + sec/(24.0*3600)
+	return jd
+}
+</pre>
+<p></p><hr><p>
+<script language="JavaScript">
+<!--
+window.defaultStatus = "Measure | Analyze | Communicate";
+// -->
+</script>
+</p><h4><a href="http://dkallen.org/index.html">Back</a> to Dan Allen's home page.
+<pre>Created:  27 Feb 2001
+Modified:  8 Jul 2016
+
+
+</pre></h4></body></html>

@@ -1,0 +1,428 @@
+FUNCTION sign,value
+IF (value GT 0) THEN BEGIN
+    RETURN,1 
+ENDIF ELSE IF (value LT 0) THEN BEGIN
+    RETURN,-1 
+ENDIF ELSE RETURN,0
+
+END
+
+PRO ephemerix, date, NOW=now, $
+	YEAR=year, MONTH=month, DAY=day, HOUR=heure, MINUTE=minute, $
+	HEADER=header, MODIFY_HEADER=modify_header, $
+	JULDAT=juldat, SOLDIST=soldist, LONGSUN=longsun, $
+	L0=l0, B0=b0, P=p, $
+	OBLIQUITY=obliquity, INCLINATION=inclination, $
+	RA_SUN=ra_sun, DEL_SUN=del_sun, H_SUN=h_sun, AZ_SUN=az_sun, $
+	HANGLE=hangle, SIDERIAL_TIME=siderial_time, $
+	NORTHANGLE=northangle
+;+
+; NAME:  
+;	EPHEMERIS	
+;
+; PURPOSE:
+;	To do basic calculation of solar ephemeris. The Date
+;	for which the calculations should be performed can be
+;	entered by an input variable or they will be prompted
+;	by the program. The ephemeris are displayed on the screen
+;	if none of the various output keywords is specified, else 
+;	the output of the procedure is given by keywords (see there).
+;
+; CATEGORY:
+;	PICO
+;
+; CALLING SEQUENCE:
+;	EPHEMERIS
+;
+; INPUTS:
+;	None	
+;
+; OPTIONAL INPUTS:
+;	date:   The date (in UT) for which the ephemeris are to
+;		be calculated. date is a string matching to
+;		the IDL time format; it has the same form
+;		as the result of SYSTIME(). See there for 
+;		the correct format.
+;
+; KEYWORD PARAMETERS:
+;		There are quite a lot of Keywords to specify
+;		with which you can retrieve the calculated
+;		values. If no output keyword is specified, 
+;		the result of the calculations will be displayed 
+;		in the Log Window.
+;
+;	INPUT KEYWORDS:
+;	===============
+;	YEAR:   gives the year (four digits requested, f.ex. 
+;		1994 instead of 94)
+;
+;	MONTH:  gives the month (1 for JAN, 12 for DEC etc.)
+;
+;	DAY:    gives the day.
+;
+;	HOUR:	gives the hour in UT (from 0 to 23)
+;
+;	MINUTE: gives the respective minute
+;
+;	NOW:    If specified, the calculations are done for
+;		the systemtime given by SYSTIME().	
+;	HEADER: Date and time are taken out of an image header
+;	MODIFY_HEADER: If set, no output is given on the screen
+;		but the header on input is modified in a way
+;		that all the calculated results are written
+;		in. A header must be given.
+;
+;	OUTPUT KEYWORDS:
+;	================
+;	AZ_SUN: The Azimut of the sun, measured from the
+;		south about the west. Azimut and height are
+;		calculated for Pic Du Midi.
+;
+;	B0:     The latitude of the solar disk center
+;
+;	DEL_SUN: The declination of the sun in degrees
+;
+;	HANGLE: The hourangle of the sun.
+;
+;	H_SUN:  The height above the horizon. Height and 
+;		Azimut are calculated for Pic Du Midi.
+;
+;	INCLINATION: Returns the inclination of the solar 
+;		rotational axis.
+;
+;	JULDAT: Named variable which returns the Julian day 
+;		for that instant exact to 1/4 of a day. Up to
+;		now it is not known how to perform a better
+;		precision.
+;
+;	L0:     The longitude of the solar disk center
+;
+;	LONGSUN: Returns the longitude of the sun in the 
+;		ecliptical plane.
+;
+;	NORTHANGLE: The angle between the solar rotational
+;		axis and the direction to the zenith.
+;
+;	OBLIQUITY: Returns the obliquity of the ecliptic 
+;		(angle between ecliptical plane and equator)
+;
+;	RA_SUN: The right ascension of the sun (in degrees)
+;
+;	SIDERIAL_TIME: The siderial time for the date
+;
+;	SOLDIST: A named variable returning the distance of
+;		the earth to the sun in Astronomical units.
+;
+; OUTPUTS:
+;	The output of the results is mainly performed by named 
+;	keywords. However, if no keywords are specified, the
+;	output is sent to the Log window.
+;
+; OPTIONAL OUTPUTS:
+;	None
+;
+; EXAMPLE:
+;	To get the basic ephemeris data about the sun for this
+;	instant enter at the prompt
+;
+;	EPHEMERIS,SYSTIME()
+;
+;	however, if you need the B0 and L0 values for 
+;	any further treatment, call Ephemeris by
+;
+;	EPHEMERIS, date, B0=clatitude, L0=clongitude
+;	
+; COMMON BLOCKS:
+;	None
+;
+; SIDE EFFECTS:
+;	Unknown
+;
+; RESTRICTIONS:
+;	None
+;
+; PROCEDURE:
+;	This procedure has been transposed from a FORTRAN
+;	routine written by Jean Michel Niot, spring 1994.
+;	The numerical formulae are taken from Astronomical 
+;	Algorithms, Jean Meeus.
+;	
+; MODIFICATION HISTORY:
+;	written by Jean Michel Niot, spring 1994
+;	adapted to IDL by Alexander Epple, 26-OCT-1994, Pic Du Midi
+;-
+
+pi=DOUBLE(!PI)
+dateflag=0
+display=1
+
+
+cond1= ((N_ELEMENTS(juldat) NE 0) OR (N_ELEMENTS(soldist) NE 0) OR (N_ELEMENTS(longsun) NE 0))
+cond2= ((N_ELEMENTS(obliquity) NE 0) OR (N_ELEMENTS(inclination) NE 0))
+cond3= ((N_ELEMENTS(l0) NE 0) OR (N_ELEMENTS(b0) NE 0) OR (N_ELEMENTS(ra_sun) NE 0))
+cond4= ((N_ELEMENTS(del_sun) NE 0) OR (N_ELEMENTS(h_sun)NE 0))
+cond5= ((N_ELEMENTS(az_sun) NE 0) OR (N_ELEMENTS(hangle) NE 0) OR (N_ELEMENTS(p) NE 0))
+cond6= ((N_ELEMENTS(siderial_time) NE 0) OR (N_ELEMENTS(northangle) NE 0))
+
+IF (cond1 OR cond2 OR cond3 OR cond4 OR cond5 OR cond6) THEN display=0
+
+IF KEYWORD_SET(modify_header) THEN BEGIN
+    IF (N_ELEMENTS(header) EQ 0) THEN BEGIN
+	MESSAGE,/INFO,/CONT,'If to be modified a HEADER has to be specified on call!'
+	GOTO,ende
+    ENDIF ELSE display=0
+ENDIF
+
+IF (N_ELEMENTS(date) EQ 0) THEN BEGIN
+    IF (N_ELEMENTS(now) NE 0) THEN BEGIN
+	date=systime() 
+    ENDIF ELSE IF (N_ELEMENTS(header) GT 0) THEN BEGIN
+	date='    '+STRMID(header.date_obs,3,3)+ $
+		' '+STRMID(header.date_obs,0,2)+' '+ $
+		header.time_obs+' 19'+STRMID(header.date_obs,7,2)
+	dateflag=0	
+    ENDIF ELSE IF (N_ELEMENTS(year) EQ 0) THEN BEGIN
+	read,'DAY ',day
+	read,'MONTH ',month
+	read,'YEAR ', year
+	read,'HOUR ',heure
+	read,'MINUTE ',minute       
+	dateflag=1
+    ENDIF ELSE dateflag=1
+ENDIF
+
+IF (NOT dateflag) THEN BEGIN
+    year=FIX(STRMID(date,0,4))
+    month=STRUPCASE(STRMID(date,5,2))
+   ; CASE month OF 
+;	'JAN': month=1
+;	'FEB': month=2
+;	'MAR': month=3
+;	'APR': month=4
+;	'MAY': month=5
+;	'JUN': month=6
+;	'JUL': month=7
+;	'AUG': month=8
+;	'SEP': month=9
+;	'OCT': month=10
+;	'NOV': month=11
+;	'DEC': month=12
+;    ENDCASE
+    day=FIX(STRMID(date,8,2))
+    heure=FIX(STRMID(date,11,2))
+    minute=FIX(STRMID(date,14,2))
+    print,year," ",month," ",day," ",heure," ",minute
+ENDIF
+
+day=DOUBLE(day+float(heure)/24.+float(minute)/1440.)
+
+;***************************************************************************
+; Calcul du jour julien
+; Astronomical Algorithms, Jean Meeus, chap. 7, p. 59
+;***************************************************************************
+
+jour=FIX(day)
+mois=month
+annee=year
+IF (month EQ 1 OR month EQ 2) THEN BEGIN
+    year=year-1
+    month=month+12
+ENDIF
+a=FIX(float(year)/100.)
+b=2-a+FIX(float(a)/4.)
+mjd=DOUBLE(LONG(365.25*float(year+4716.))+LONG(30.6001*float(month+1.))+ $
+	float(b)-1524.5)-2451545.
+mjd=mjd+float(day)
+jd=mjd+2451545.
+juldat=jd
+
+;***************************************************************************
+; Calcul de la distance Terre-Soleil 'r'
+; Astronomical Algorithms, Jean Meeus, chap. 24, p. 151
+;***************************************************************************
+
+t=(mjd)/36525.        
+m=357.52910+35999.05030*t-0.0001559*t*t-0.00000048*t*t*t
+e=0.016708617-0.000042037*t-0.0000001236*t*t
+c=(1.914600-0.004817*t-0.000014*t*t)*sin(m*pi/180)+ $
+	(0.019993-0.000101*t)*sin(2*m*pi/180)+0.000290*sin(3*m*pi/180)
+v=m+c
+r=1.000001018*(1-e*e)/(1+e*cos(v*pi/180))
+soldist=FLOAT(r)
+
+;***************************************************************************
+; Calcul de la longitude du soleil 'l'
+; Astronomical Algorithms, Jean Meeus, chap. 24, p. 151 
+;***************************************************************************
+
+omeg=125.04452-1934.136261*t+0.0020708*t*t+t*t*t/450000.
+lo=280.46645+36000.76983*t+0.0003032*t*t
+teta=lo+c
+l=teta-0.00569-0.00478*sin(omeg*pi/180)-180
+longsun=l
+
+;***************************************************************************
+; Calcul de l'obliquite de l'ecliptique 'eps'
+; Astronomical Algorithms, Jean Meeus, chap. 21, p. 131 
+;***************************************************************************
+
+eps0=23.*3600+26*60+21.448-46.8150*t-0.00059*t*t+0.001813*t*t*t
+eps0=eps0/3600
+l1=280.4665+36000.7698*t
+l2=218.3165+481267.8813*t
+deps=9.20*cos(omeg*pi/180)+0.57*cos(2*l1*pi/180)+ $
+	0.10*cos(2*l2*pi/180)-0.09*cos(2*omeg*pi/180)
+deps=deps/3600
+eps=eps0+deps
+obliquity=eps
+
+;***************************************************************************
+; Calcul de l'inclinaison du soleil 'p'
+; Astronomical Algorithms, Jean Meeus, chap. 28, p. 177 
+;***************************************************************************
+
+i=7.25
+k=73.6667+1.3958333*DOUBLE(jd-2396758.)/36525.
+lambda=l+180-0.0056916/r
+dpsi=-17.20*sin(omeg*pi/180)-1.32*sin(2*l*pi/180)- $
+	0.23*sin(2*l2*pi/180)+0.21*sin(2*omeg*pi/180)
+dpsi=dpsi/3600
+lambda2=lambda+dpsi
+x1=atan(-cos((lambda2)*pi/180)*tan(eps*pi/180))
+x2=atan(-cos((lambda-k)*pi/180)*tan(i*pi/180))
+p=(x1+x2)*180/pi
+inclination=p
+
+;***************************************************************************
+; Calcul de la longitude 'l0' et de la latitude 'b0' du centre du 
+;   du disque solaire
+; Astronomical Algorithms, Jean Meeus, chap. 28, p. 177
+;***************************************************************************
+
+b0=asin(sin((lambda-k)*pi/180)*sin(i*pi/180))*180/pi
+eta=atan(tan((lambda-k)*pi/180)*cos(i*pi/180))*180/pi
+a=sign(sin((lambda-k)*pi/180))
+b=sign(cos((lambda-k)*pi/180)) 
+c=sign(sin(eta*pi/180))
+d=sign(cos(eta*pi/180))
+IF ((a EQ c) AND (b EQ d)) THEN eta=eta+180
+
+teta2=DOUBLE(jd-2398220.)*360./25.38
+l0=eta-teta2
+
+WHILE (l0 GT 360) DO l0=l0-360
+WHILE (l0 LT 0) DO l0=l0+360
+
+;***************************************************************************
+; Calcul de l'ascension droite 'ad' et de la declinaison 'dec' du soleil
+; Astronomical Algorithms, Jean Meeus, chap. 24, p. 151
+;***************************************************************************
+
+ad=atan( cos(eps*pi/180)*tan((l+180)*pi/180) )*180/pi
+a=sign(sin(ad*pi/180))
+b=sign(cos(ad*pi/180)) 
+c=sign(sin((l+180)*pi/180))
+d=sign(cos((l+180)*pi/180))
+IF ((a NE c) AND (b NE d)) THEN ad=ad+180
+
+WHILE (ad GT 360) DO ad=ad-360
+WHILE (ad LT 0) DO ad=ad+360
+
+dec=asin( sin(eps*pi/180)*sin((l+180)*pi/180) )*180/pi
+
+ra_sun=ad
+del_sun=dec
+
+;***************************************************************************
+; Calcul de la hauteur 'h' du soleil
+;       et de l'azimuth 'az' du soleil
+;   phi est la latitude du Pic du Midi
+;   long est la longitude du Pic du Midi
+;   ah est l'angle horaire
+;   stg est l'heure sid‚ral de Greenwich
+; Astronomical Algorithms, Jean Meeus, chap. 12, p. 87
+;***************************************************************************
+
+phi=42.938056
+longi=-.0141944
+stg=280.46061837+360.98564736629*DOUBLE(jd-2451545.)+ $
+	0.000387933*t*t-t*t*t/38710000.
+ah=stg-longi-ad
+
+WHILE(ah GT 180) DO ah=ah-360
+WHILE(ah LT -180) DO ah=ah+360
+
+hangle=ah
+h=asin( sin(phi*pi/180)*sin(dec*pi/180)+cos(phi*pi/180)* $
+	cos(dec*pi/180)*cos(ah*pi/180) )*180/pi
+az=atan( sin(ah*pi/180)/(cos(ah*pi/180)*sin(phi*pi/180)- $
+	tan(dec*pi/180)*cos(phi*pi/180)) )*180/pi
+IF ((ah LT 0) AND (az GT 0)) THEN az=az-180
+IF ((ah GT 0) AND (az LT 0)) THEN az=az+180
+
+;-----------------------------------------------------------------------
+; Das folgende Ersetzen von header durch hdr verhindert eine
+; Fehlermeldung. Irgendwie wird durch die zwei folgenden Zeilen
+; die variable header durch h oder h_sun ersetzt.
+;-----------------------------------------------------------------------
+IF (N_ELEMENTS(header) GT 0) THEN hdr=header
+
+h_sun=h
+az_sun=az
+
+IF (N_ELEMENTS(header) GT 0) THEN header=TEMPORARY(hdr)
+
+
+;***************************************************************************
+; Calcul de l'angle entre le Nord g‚om‚trique et le z‚nith ksi
+;  ksi est positif si l'angle horaire ah est positif.
+;***************************************************************************
+
+ksi=acos( (sin(phi*pi/180)-sin(h*pi/180)*sin(dec*pi/180))/ $
+	(cos(h*pi/180)*cos(dec*pi/180)) )*180/pi
+IF (ah LT 0) THEN ksi=-ksi
+
+northangle=ksi
+
+;***************************************************************************
+;  Affichage des r‚sultats
+;***************************************************************************
+
+IF (display) THEN BEGIN        
+
+print
+print
+print,'************************************************'
+print,'        SOLAR EPHEMERIS'
+print,'************************************************'
+print
+print,'Date  = '+SC(FIX(jour))+' / '+SC(FIX(mois))+' / '+SC(FIX(annee))
+print,'Time = '+SC(FIX(heure))+' h '+SC(FIX(minute))+' min UT'
+print
+
+print,FORMAT='("Right ascension          =",F8.2,"°")',ad
+print,FORMAT='("Declination              =",F8.2,"°")',dec
+print,FORMAT='("Hour angle (+ to W)      =",F8.2,"°")',ah
+print,FORMAT='("Height above horizon     =",F8.2,"°")',h
+print,FORMAT='("Azimuth (0 S, 90 W)      =",F8.2,"°")',az
+print
+print,FORMAT='("Distance Earth-Sun       =",F8.6," AU")',r
+print,FORMAT='("Position angle (+ vers E)=",F8.2,"°")',p
+print,FORMAT='("Heliogr. central lat. B0 =",F8.2,"°")',b0
+print,FORMAT='("Heliogr. central long. L0=",F8.2,"°")',l0
+print,FORMAT='("Angle to the zenith      =",F8.2,"°")',ksi
+print
+print,'************************************************'
+ENDIF
+
+IF KEYWORD_SET(modify_header) THEN BEGIN
+    header.p=p
+    header.b0=b0
+    header.l0=l0
+    header.h=h
+    header.d=r
+ENDIF
+
+ende:
+RETURN
+END

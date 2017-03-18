@@ -1,0 +1,1 @@
+function openWin(url){var win=window.open('/kb/kbsearch!tips.jspa','newWindow','width=450,height=400,menubar=yes,location=no,statusbar=yes,personalbar=no,scrollbars=yes,resize=yes');}

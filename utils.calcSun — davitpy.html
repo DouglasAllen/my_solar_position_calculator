@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0079)http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/calcSun.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>utils.calcSun — davitpy</title>
+    
+    <link rel="stylesheet" href="./utils.calcSun — davitpy_files/cloud.css" type="text/css">
+    <link rel="stylesheet" href="./utils.calcSun — davitpy_files/pygments.css" type="text/css">
+    <link rel="stylesheet" href="./utils.calcSun — davitpy_files/css" type="text/css">
+    
+    <script async="" src="./utils.calcSun — davitpy_files/analytics.js.download"></script><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="./utils.calcSun — davitpy_files/jquery.js.download"></script>
+    <script type="text/javascript" src="./utils.calcSun — davitpy_files/underscore.js.download"></script>
+    <script type="text/javascript" src="./utils.calcSun — davitpy_files/doctools.js.download"></script>
+    <script type="text/javascript" src="./utils.calcSun — davitpy_files/jquery.cookie.js.download"></script>
+    <script type="text/javascript" src="./utils.calcSun — davitpy_files/cloud.js.download"></script>
+    <link rel="top" title="davitpy" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/index.html">
+    <link rel="up" title="utils" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils.html"> 
+    <link rel="shortcut icon" href="http://sd-work2.ece.vt.edu/davitpylogos/py_16.png">  
+    <link rel="”apple-touch-icon-precomposed”" sizes="”114×114″" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/%E2%80%9Dhttp://sd-work2.ece.vt.edu/davitpylogos/py_114.png%E2%80%9D">
+    <link rel="”apple-touch-icon-precomposed”" sizes="”72×72″" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/%E2%80%9Dhttp://sd-work2.ece.vt.edu/davitpylogos/py_72.png%E2%80%9D">
+    <link rel="”apple-touch-icon-precomposed”" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/%E2%80%9Dhttp://sd-work2.ece.vt.edu/davitpylogos/py_57.png%E2%80%9D">
+    <link rel="”apple-touch-icon”" sizes="”114×114″" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/%E2%80%9Dhttp://sd-work2.ece.vt.edu/davitpylogos/py_114.png%E2%80%9D">
+    <link rel="”apple-touch-icon”" sizes="”72×72″" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/%E2%80%9Dhttp://sd-work2.ece.vt.edu/davitpylogos/py_72.png%E2%80%9D">
+    <link rel="”apple-touch-icon”" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils/%E2%80%9Dhttp://sd-work2.ece.vt.edu/davitpylogos/py_57.png%E2%80%9D">
+
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/py-modindex.html" title="Python Module Index">modules</a> &nbsp; &nbsp;</li>
+    <li><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/index.html">davitpy</a> »</li>
+
+          <li><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/index.html">Module code</a> »</li>
+          <li><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils.html" accesskey="U">utils</a> »</li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for utils.calcSun</h1><div class="highlight"><pre><span class="c"># UTILS/calcSun</span>
+<span class="sd">"""</span>
+<span class="sd">*********************</span>
+<span class="sd">**Module**: utils.calcSun</span>
+<span class="sd">*********************</span>
+<span class="sd">This subpackage contains def to calculate sunrise/sunset</span>
+
+<span class="sd">This includes the following defs:</span>
+<span class="sd">    * :func:`utils.calcSun.getJD`: </span>
+<span class="sd">        calculate the julian date from a python datetime object</span>
+<span class="sd">    * :func:`utils.calcSun.calcTimeJulianCent`: </span>
+<span class="sd">        convert Julian Day to centuries since J2000.0.</span>
+<span class="sd">    * :func:`utils.calcSun.calcGeomMeanLongSun`: </span>
+<span class="sd">        calculate the Geometric Mean Longitude of the Sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcGeomMeanAnomalySun`: </span>
+<span class="sd">        calculate the Geometric Mean Anomaly of the Sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcEccentricityEarthOrbit`: </span>
+<span class="sd">        calculate the eccentricity of earth's orbit (unitless)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunEqOfCenter`: </span>
+<span class="sd">        calculate the equation of center for the sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunTrueLong`: </span>
+<span class="sd">        calculate the true longitude of the sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunTrueAnomaly`: </span>
+<span class="sd">        calculate the true anamoly of the sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunRadVector`: </span>
+<span class="sd">        calculate the distance to the sun in AU (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunApparentLong`: </span>
+<span class="sd">        calculate the apparent longitude of the sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcMeanObliquityOfEcliptic`: </span>
+<span class="sd">        calculate the mean obliquity of the ecliptic (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcObliquityCorrection`: </span>
+<span class="sd">        calculate the corrected obliquity of the ecliptic (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunRtAscension`: </span>
+<span class="sd">        calculate the right ascension of the sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunDeclination`: </span>
+<span class="sd">        calculate the declination of the sun (in degrees)</span>
+<span class="sd">    * :func:`utils.calcSun.calcEquationOfTime`: </span>
+<span class="sd">        calculate the difference between true solar time and mean solar time (output: equation of time in minutes of time)</span>
+<span class="sd">    * :func:`utils.calcSun.calcHourAngleSunrise`: </span>
+<span class="sd">        calculate the hour angle of the sun at sunrise for the latitude (in radians)</span>
+<span class="sd">    * :func:`utils.calcSun.calcAzEl`: </span>
+<span class="sd">        calculate sun azimuth and zenith angle</span>
+<span class="sd">    * :func:`utils.calcSun.calcSolNoonUTC`: </span>
+<span class="sd">        calculate time of solar noon the given day at the given location on earth (in minutes since 0 UTC)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSolNoon`: </span>
+<span class="sd">        calculate time of solar noon the given day at the given location on earth (in minutes)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunRiseSetUTC`: </span>
+<span class="sd">        calculate sunrise/sunset the given day at the given location on earth (in minutes since 0 UTC)</span>
+<span class="sd">    * :func:`utils.calcSun.calcSunRiseSet`: </span>
+<span class="sd">        calculate sunrise/sunset the given day at the given location on earth (in minutes)</span>
+<span class="sd">    * :func:`utils.calcSun.calcTerminator`: </span>
+<span class="sd">        calculate terminator position and solar zenith angle for a given julian date-time within latitude/longitude limits</span>
+<span class="sd">        note that for plotting only, basemap has a built-in terminator</span>
+
+<span class="sd">Source: http://www.esrl.noaa.gov/gmd/grad/solcalc/</span>
+<span class="sd">Translated to Python by Sebastien de Larquier</span>
+
+<span class="sd">*******************************</span>
+<span class="sd">"""</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<div class="viewcode-block" id="calcTimeJulianCent"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcTimeJulianCent">[docs]</a><span class="k">def</span> <span class="nf">calcTimeJulianCent</span><span class="p">(</span> <span class="n">jd</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Convert Julian Day to centuries since J2000.0.</span>
+<span class="sd">    """</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="n">jd</span> <span class="o">-</span> <span class="mf">2451545.0</span><span class="p">)</span><span class="o">/</span><span class="mf">36525.0</span>
+    <span class="k">return</span> <span class="n">T</span>
+
+</div>
+<div class="viewcode-block" id="calcGeomMeanLongSun"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcGeomMeanLongSun">[docs]</a><span class="k">def</span> <span class="nf">calcGeomMeanLongSun</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the Geometric Mean Longitude of the Sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">L0</span> <span class="o">=</span> <span class="mf">280.46646</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">36000.76983</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="mf">0.0003032</span> <span class="p">)</span>
+    <span class="k">while</span> <span class="n">L0</span> <span class="o">&gt;</span> <span class="mf">360.0</span><span class="p">:</span>
+        <span class="n">L0</span> <span class="o">-=</span> <span class="mf">360.0</span>
+    <span class="k">while</span> <span class="n">L0</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">L0</span> <span class="o">+=</span> <span class="mf">360.0</span>
+    <span class="k">return</span> <span class="n">L0</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcGeomMeanAnomalySun"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcGeomMeanAnomalySun">[docs]</a><span class="k">def</span> <span class="nf">calcGeomMeanAnomalySun</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the Geometric Mean Anomaly of the Sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mf">357.52911</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">35999.05029</span> <span class="o">-</span> <span class="mf">0.0001537</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">M</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcEccentricityEarthOrbit"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcEccentricityEarthOrbit">[docs]</a><span class="k">def</span> <span class="nf">calcEccentricityEarthOrbit</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the eccentricity of earth's orbit (unitless)</span>
+<span class="sd">    """</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mf">0.016708634</span> <span class="o">-</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">0.000042037</span> <span class="o">+</span> <span class="mf">0.0000001267</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">e</span> <span class="c"># unitless</span>
+
+</div>
+<div class="viewcode-block" id="calcSunEqOfCenter"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunEqOfCenter">[docs]</a><span class="k">def</span> <span class="nf">calcSunEqOfCenter</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the equation of center for the sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">mrad</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">calcGeomMeanAnomalySun</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">sinm</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">mrad</span><span class="p">)</span>
+    <span class="n">sin2m</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">mrad</span><span class="o">+</span><span class="n">mrad</span><span class="p">)</span>
+    <span class="n">sin3m</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">mrad</span><span class="o">+</span><span class="n">mrad</span><span class="o">+</span><span class="n">mrad</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">sinm</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.914602</span> <span class="o">-</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.004817</span> <span class="o">+</span> <span class="mf">0.000014</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span> <span class="o">+</span> <span class="n">sin2m</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.019993</span> <span class="o">-</span> <span class="mf">0.000101</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">sin3m</span> <span class="o">*</span> <span class="mf">0.000289</span>
+    <span class="k">return</span> <span class="n">C</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcSunTrueLong"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunTrueLong">[docs]</a><span class="k">def</span> <span class="nf">calcSunTrueLong</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the true longitude of the sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">l0</span> <span class="o">=</span> <span class="n">calcGeomMeanLongSun</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">calcSunEqOfCenter</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">O</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">O</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcSunTrueAnomaly"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunTrueAnomaly">[docs]</a><span class="k">def</span> <span class="nf">calcSunTrueAnomaly</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the true anamoly of the sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">calcGeomMeanAnomalySun</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">calcSunEqOfCenter</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="n">v</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcSunRadVector"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunRadVector">[docs]</a><span class="k">def</span> <span class="nf">calcSunRadVector</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the distance to the sun in AU (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">calcSunTrueAnomaly</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">calcEccentricityEarthOrbit</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.000001018</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="n">e</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span> <span class="mf">1.</span> <span class="o">+</span> <span class="n">e</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span> <span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">R</span> <span class="c"># n AUs</span>
+
+</div>
+<div class="viewcode-block" id="calcSunApparentLong"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunApparentLong">[docs]</a><span class="k">def</span> <span class="nf">calcSunApparentLong</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the apparent longitude of the sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">calcSunTrueLong</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="mf">125.04</span> <span class="o">-</span> <span class="mf">1934.136</span> <span class="o">*</span> <span class="n">t</span>
+    <span class="n">SunLong</span> <span class="o">=</span> <span class="n">o</span> <span class="o">-</span> <span class="mf">0.00569</span> <span class="o">-</span> <span class="mf">0.00478</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">omega</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">SunLong</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcMeanObliquityOfEcliptic"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcMeanObliquityOfEcliptic">[docs]</a><span class="k">def</span> <span class="nf">calcMeanObliquityOfEcliptic</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the mean obliquity of the ecliptic (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">seconds</span> <span class="o">=</span> <span class="mf">21.448</span> <span class="o">-</span> <span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">46.8150</span> <span class="o">+</span> <span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">0.00059</span> <span class="o">-</span> <span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">0.001813</span><span class="p">)))</span>
+    <span class="n">e0</span> <span class="o">=</span> <span class="mf">23.0</span> <span class="o">+</span> <span class="p">(</span><span class="mf">26.0</span> <span class="o">+</span> <span class="p">(</span><span class="n">seconds</span><span class="o">/</span><span class="mf">60.0</span><span class="p">))</span><span class="o">/</span><span class="mf">60.0</span>
+    <span class="k">return</span> <span class="n">e0</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcObliquityCorrection"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcObliquityCorrection">[docs]</a><span class="k">def</span> <span class="nf">calcObliquityCorrection</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the corrected obliquity of the ecliptic (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">e0</span> <span class="o">=</span> <span class="n">calcMeanObliquityOfEcliptic</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="mf">125.04</span> <span class="o">-</span> <span class="mf">1934.136</span> <span class="o">*</span> <span class="n">t</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">e0</span> <span class="o">+</span> <span class="mf">0.00256</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">omega</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">e</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcSunRtAscension"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunRtAscension">[docs]</a><span class="k">def</span> <span class="nf">calcSunRtAscension</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the right ascension of the sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">calcObliquityCorrection</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">SunLong</span> <span class="o">=</span> <span class="n">calcSunApparentLong</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">tananum</span> <span class="o">=</span> <span class="p">(</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">e</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">SunLong</span><span class="p">))</span> <span class="p">)</span>
+    <span class="n">tanadenom</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">SunLong</span><span class="p">))</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">anumpy</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">tananum</span><span class="p">,</span> <span class="n">tanadenom</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">alpha</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcSunDeclination"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunDeclination">[docs]</a><span class="k">def</span> <span class="nf">calcSunDeclination</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the declination of the sun (in degrees)</span>
+<span class="sd">    """</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">calcObliquityCorrection</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">SunLong</span> <span class="o">=</span> <span class="n">calcSunApparentLong</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">sint</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">e</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">SunLong</span><span class="p">))</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">sint</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">theta</span> <span class="c"># in degrees</span>
+
+</div>
+<div class="viewcode-block" id="calcEquationOfTime"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcEquationOfTime">[docs]</a><span class="k">def</span> <span class="nf">calcEquationOfTime</span><span class="p">(</span> <span class="n">t</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the difference between true solar time and mean solar time (output: equation of time in minutes of time)  </span>
+<span class="sd">    """</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">calcObliquityCorrection</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">l0</span> <span class="o">=</span> <span class="n">calcGeomMeanLongSun</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">calcEccentricityEarthOrbit</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">calcGeomMeanAnomalySun</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">epsilon</span><span class="o">/</span><span class="mf">2.0</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">*=</span> <span class="n">y</span>
+
+    <span class="n">sin2l0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">l0</span><span class="p">))</span>
+    <span class="n">sinm</span>   <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+    <span class="n">cos2l0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">l0</span><span class="p">))</span>
+    <span class="n">sin4l0</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">l0</span><span class="p">))</span>
+    <span class="n">sin2m</span>  <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">m</span><span class="p">))</span>
+
+    <span class="n">Etime</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">sin2l0</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">sinm</span> <span class="o">+</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">sinm</span> <span class="o">*</span> <span class="n">cos2l0</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">sin4l0</span> <span class="o">-</span> <span class="mf">1.25</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">sin2m</span>
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">Etime</span><span class="o">*</span><span class="mf">4.0</span><span class="p">)</span> <span class="c"># in minutes of time</span>
+
+</div>
+<div class="viewcode-block" id="calcHourAngleSunrise"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcHourAngleSunrise">[docs]</a><span class="k">def</span> <span class="nf">calcHourAngleSunrise</span><span class="p">(</span> <span class="n">lat</span><span class="p">,</span> <span class="n">solarDec</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate the hour angle of the sun at sunrise for the latitude (in radians)</span>
+<span class="sd">    """</span>
+    <span class="n">latRad</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span>
+    <span class="n">sdRad</span>  <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">solarDec</span><span class="p">)</span>
+    <span class="n">HAarg</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mf">90.833</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latRad</span><span class="p">)</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sdRad</span><span class="p">)</span> <span class="p">)</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">latRad</span><span class="p">)</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">sdRad</span><span class="p">)</span>
+    <span class="n">HA</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">HAarg</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">HA</span> <span class="c"># in radians (for sunset, use -HA)</span>
+
+</div>
+<div class="viewcode-block" id="calcAzEl"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcAzEl">[docs]</a><span class="k">def</span> <span class="nf">calcAzEl</span><span class="p">(</span> <span class="n">t</span><span class="p">,</span> <span class="n">localtime</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">zone</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate sun azimuth and zenith angle</span>
+<span class="sd">    """</span>
+    <span class="n">eqTime</span> <span class="o">=</span> <span class="n">calcEquationOfTime</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">theta</span>  <span class="o">=</span> <span class="n">calcSunDeclination</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="n">solarTimeFix</span> <span class="o">=</span> <span class="n">eqTime</span> <span class="o">+</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">longitude</span> <span class="o">-</span> <span class="mf">60.0</span> <span class="o">*</span> <span class="n">zone</span>
+    <span class="n">earthRadVec</span> <span class="o">=</span> <span class="n">calcSunRadVector</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="n">trueSolarTime</span> <span class="o">=</span> <span class="n">localtime</span> <span class="o">+</span> <span class="n">solarTimeFix</span>
+    <span class="k">while</span> <span class="n">trueSolarTime</span> <span class="o">&gt;</span> <span class="mi">1440</span><span class="p">:</span>
+        <span class="n">trueSolarTime</span> <span class="o">-=</span> <span class="mf">1440.</span>
+
+    <span class="n">hourAngle</span> <span class="o">=</span> <span class="n">trueSolarTime</span> <span class="o">/</span> <span class="mf">4.0</span> <span class="o">-</span> <span class="mf">180.0</span>
+    <span class="k">if</span> <span class="n">hourAngle</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">180.</span><span class="p">:</span> 
+        <span class="n">hourAngle</span> <span class="o">+=</span> <span class="mf">360.0</span>
+
+    <span class="n">haRad</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">hourAngle</span><span class="p">)</span>
+    <span class="n">csz</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">haRad</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">csz</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span> 
+        <span class="n">csz</span> <span class="o">=</span> <span class="mf">1.0</span> 
+    <span class="k">elif</span> <span class="n">csz</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">:</span> 
+        <span class="n">csz</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
+    <span class="n">zenith</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">csz</span><span class="p">))</span>
+    <span class="n">azDenom</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">zenith</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">azDenom</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="p">:</span> 
+        <span class="n">azRad</span> <span class="o">=</span> <span class="p">((</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">zenith</span><span class="p">))</span> <span class="p">)</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">theta</span><span class="p">)))</span> <span class="o">/</span> <span class="n">azDenom</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">azRad</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span> 
+            <span class="k">if</span> <span class="n">azRad</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">:</span> 
+                <span class="n">azRad</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> 
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">azRad</span> <span class="o">=</span> <span class="mf">1.0</span>
+        
+        <span class="n">azimuth</span> <span class="o">=</span> <span class="mf">180.0</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">azRad</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">hourAngle</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span> 
+            <span class="n">azimuth</span> <span class="o">=</span> <span class="o">-</span><span class="n">azimuth</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">latitude</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span> 
+            <span class="n">azimuth</span> <span class="o">=</span> <span class="mf">180.0</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">azimuth</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">azimuth</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">:</span> 
+        <span class="n">azimuth</span> <span class="o">+=</span> <span class="mf">360.0</span>
+    <span class="n">exoatmElevation</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">-</span> <span class="n">zenith</span>
+
+    <span class="c"># Atmospheric Refraction correction</span>
+    <span class="k">if</span> <span class="n">exoatmElevation</span> <span class="o">&gt;</span> <span class="mf">85.0</span><span class="p">:</span> 
+        <span class="n">refractionCorrection</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">te</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">exoatmElevation</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">exoatmElevation</span> <span class="o">&gt;</span> <span class="mf">5.0</span><span class="p">:</span> 
+            <span class="n">refractionCorrection</span> <span class="o">=</span> <span class="mf">58.1</span> <span class="o">/</span> <span class="n">te</span> <span class="o">-</span> <span class="mf">0.07</span> <span class="o">/</span> <span class="p">(</span><span class="n">te</span><span class="o">*</span><span class="n">te</span><span class="o">*</span><span class="n">te</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.000086</span> <span class="o">/</span> <span class="p">(</span><span class="n">te</span><span class="o">*</span><span class="n">te</span><span class="o">*</span><span class="n">te</span><span class="o">*</span><span class="n">te</span><span class="o">*</span><span class="n">te</span><span class="p">)</span> 
+        <span class="k">elif</span> <span class="n">exoatmElevation</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.575</span><span class="p">:</span> 
+            <span class="n">refractionCorrection</span> <span class="o">=</span> <span class="mf">1735.0</span> <span class="o">+</span> <span class="n">exoatmElevation</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">518.2</span> <span class="o">+</span> <span class="n">exoatmElevation</span> <span class="o">*</span> <span class="p">(</span><span class="mf">103.4</span> <span class="o">+</span> <span class="n">exoatmElevation</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">12.79</span> <span class="o">+</span> <span class="n">exoatmElevation</span> <span class="o">*</span> <span class="mf">0.711</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">refractionCorrection</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.774</span> <span class="o">/</span> <span class="n">te</span>
+        <span class="n">refractionCorrection</span> <span class="o">=</span> <span class="n">refractionCorrection</span> <span class="o">/</span> <span class="mf">3600.0</span>
+
+    <span class="n">solarZen</span> <span class="o">=</span> <span class="n">zenith</span> <span class="o">-</span> <span class="n">refractionCorrection</span>
+    
+    <span class="k">return</span> <span class="n">azimuth</span><span class="p">,</span> <span class="n">solarZen</span>
+
+</div>
+<div class="viewcode-block" id="calcSolNoonUTC"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSolNoonUTC">[docs]</a><span class="k">def</span> <span class="nf">calcSolNoonUTC</span><span class="p">(</span> <span class="n">jd</span><span class="p">,</span> <span class="n">longitude</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate time of solar noon the given day at the given location on earth (in minute since 0 UTC)</span>
+<span class="sd">    """</span>
+    <span class="n">tnoon</span> <span class="o">=</span> <span class="n">calcTimeJulianCent</span><span class="p">(</span><span class="n">jd</span><span class="p">)</span>
+    <span class="n">eqTime</span> <span class="o">=</span> <span class="n">calcEquationOfTime</span><span class="p">(</span><span class="n">tnoon</span><span class="p">)</span>
+    <span class="n">solNoonUTC</span> <span class="o">=</span> <span class="mf">720.0</span> <span class="o">-</span> <span class="p">(</span><span class="n">longitude</span> <span class="o">*</span> <span class="mf">4.</span><span class="p">)</span> <span class="o">-</span> <span class="n">eqTime</span> <span class="c"># in minutes</span>
+    <span class="k">return</span> <span class="n">solNoonUTC</span>
+
+</div>
+<div class="viewcode-block" id="calcSolNoon"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSolNoon">[docs]</a><span class="k">def</span> <span class="nf">calcSolNoon</span><span class="p">(</span> <span class="n">jd</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">timezone</span><span class="p">,</span> <span class="n">dst</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate time of solar noon the given day at the given location on earth (in minute)</span>
+<span class="sd">    """</span>
+    <span class="n">timeUTC</span>    <span class="o">=</span> <span class="n">calcSolNoonUTC</span><span class="p">(</span><span class="n">jd</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+    <span class="n">newTimeUTC</span> <span class="o">=</span> <span class="n">calcSolNoonUTC</span><span class="p">(</span><span class="n">jd</span> <span class="o">+</span> <span class="n">timeUTC</span><span class="o">/</span><span class="mf">1440.0</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+    <span class="n">solNoonLocal</span> <span class="o">=</span> <span class="n">newTimeUTC</span> <span class="o">+</span> <span class="p">(</span><span class="n">timezone</span><span class="o">*</span><span class="mf">60.0</span><span class="p">)</span> <span class="c"># in minutes</span>
+    <span class="k">if</span> <span class="n">dst</span><span class="p">:</span> 
+        <span class="n">solNoonLocal</span> <span class="o">+=</span> <span class="mf">60.0</span>
+    <span class="k">return</span> <span class="n">solNoonLocal</span>
+
+</div>
+<div class="viewcode-block" id="calcSunRiseSetUTC"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunRiseSetUTC">[docs]</a><span class="k">def</span> <span class="nf">calcSunRiseSetUTC</span><span class="p">(</span> <span class="n">jd</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate sunrise/sunset the given day at the given location on earth (in minute since 0 UTC)</span>
+<span class="sd">    """</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">calcTimeJulianCent</span><span class="p">(</span><span class="n">jd</span><span class="p">)</span>
+    <span class="n">eqTime</span> <span class="o">=</span> <span class="n">calcEquationOfTime</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">solarDec</span> <span class="o">=</span> <span class="n">calcSunDeclination</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">hourAngle</span> <span class="o">=</span> <span class="n">calcHourAngleSunrise</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">solarDec</span><span class="p">)</span>
+    <span class="c"># Rise time</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">longitude</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">hourAngle</span><span class="p">)</span>
+    <span class="n">riseTimeUTC</span> <span class="o">=</span> <span class="mf">720.</span> <span class="o">-</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">delta</span><span class="p">)</span> <span class="o">-</span> <span class="n">eqTime</span> <span class="c"># in minutes</span>
+    <span class="c"># Set time</span>
+    <span class="n">hourAngle</span> <span class="o">=</span> <span class="o">-</span><span class="n">hourAngle</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">longitude</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">hourAngle</span><span class="p">)</span>
+    <span class="n">setTimeUTC</span> <span class="o">=</span> <span class="mf">720.</span> <span class="o">-</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">delta</span><span class="p">)</span> <span class="o">-</span> <span class="n">eqTime</span> <span class="c"># in minutes</span>
+    <span class="k">return</span> <span class="n">riseTimeUTC</span><span class="p">,</span> <span class="n">setTimeUTC</span>
+
+</div>
+<div class="viewcode-block" id="calcSunRiseSet"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcSunRiseSet">[docs]</a><span class="k">def</span> <span class="nf">calcSunRiseSet</span><span class="p">(</span> <span class="n">jd</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">timezone</span><span class="p">,</span> <span class="n">dst</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate sunrise/sunset the given day at the given location on earth (in minutes)</span>
+<span class="sd">    """</span>
+    <span class="n">rtimeUTC</span><span class="p">,</span> <span class="n">stimeUTC</span> <span class="o">=</span> <span class="n">calcSunRiseSetUTC</span><span class="p">(</span><span class="n">jd</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+    <span class="c"># calculate local sunrise time (in minutes)</span>
+    <span class="n">rnewTimeUTC</span><span class="p">,</span> <span class="n">snewTimeUTC</span> <span class="o">=</span> <span class="n">calcSunRiseSetUTC</span><span class="p">(</span><span class="n">jd</span> <span class="o">+</span> <span class="n">rtimeUTC</span><span class="o">/</span><span class="mf">1440.0</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+    <span class="n">rtimeLocal</span> <span class="o">=</span> <span class="n">rnewTimeUTC</span> <span class="o">+</span> <span class="p">(</span><span class="n">timezone</span> <span class="o">*</span> <span class="mf">60.0</span><span class="p">)</span>
+    <span class="n">rtimeLocal</span> <span class="o">+=</span> <span class="mf">60.0</span> <span class="k">if</span> <span class="n">dst</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">rtimeLocal</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">rtimeLocal</span> <span class="o">&gt;=</span> <span class="mf">1440.0</span><span class="p">:</span> 
+        <span class="n">jday</span> <span class="o">=</span> <span class="n">jd</span>
+        <span class="n">increment</span> <span class="o">=</span> <span class="mf">1.</span> <span class="k">if</span> <span class="n">rtimeLocal</span> <span class="o">&lt;</span> <span class="mf">0.</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.</span>
+        <span class="k">while</span> <span class="n">rtimeLocal</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">rtimeLocal</span> <span class="o">&gt;=</span> <span class="mf">1440.0</span><span class="p">:</span>
+            <span class="n">rtimeLocal</span> <span class="o">+=</span> <span class="n">increment</span> <span class="o">*</span> <span class="mf">1440.0</span>
+            <span class="n">jday</span> <span class="o">-=</span> <span class="n">increment</span>
+    <span class="c"># calculate local sunset time (in minutes)</span>
+    <span class="n">rnewTimeUTC</span><span class="p">,</span> <span class="n">snewTimeUTC</span> <span class="o">=</span> <span class="n">calcSunRiseSetUTC</span><span class="p">(</span><span class="n">jd</span> <span class="o">+</span> <span class="n">stimeUTC</span><span class="o">/</span><span class="mf">1440.0</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
+    <span class="n">stimeLocal</span> <span class="o">=</span> <span class="n">snewTimeUTC</span> <span class="o">+</span> <span class="p">(</span><span class="n">timezone</span> <span class="o">*</span> <span class="mf">60.0</span><span class="p">)</span>
+    <span class="n">stimeLocal</span> <span class="o">+=</span> <span class="mf">60.0</span> <span class="k">if</span> <span class="n">dst</span> <span class="k">else</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">stimeLocal</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">stimeLocal</span> <span class="o">&gt;=</span> <span class="mf">1440.0</span><span class="p">:</span> 
+        <span class="n">jday</span> <span class="o">=</span> <span class="n">jd</span>
+        <span class="n">increment</span> <span class="o">=</span> <span class="mf">1.</span> <span class="k">if</span> <span class="n">stimeLocal</span> <span class="o">&lt;</span> <span class="mf">0.</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.</span>
+        <span class="k">while</span> <span class="n">stimeLocal</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">stimeLocal</span> <span class="o">&gt;=</span> <span class="mf">1440.0</span><span class="p">:</span>
+            <span class="n">stimeLocal</span> <span class="o">+=</span> <span class="n">increment</span> <span class="o">*</span> <span class="mf">1440.0</span>
+            <span class="n">jday</span> <span class="o">-=</span> <span class="n">increment</span>
+    <span class="c"># return</span>
+    <span class="k">return</span> <span class="n">rtimeLocal</span><span class="p">,</span> <span class="n">stimeLocal</span>
+
+</div>
+<div class="viewcode-block" id="calcTerminator"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.calcTerminator">[docs]</a><span class="k">def</span> <span class="nf">calcTerminator</span><span class="p">(</span> <span class="n">date</span><span class="p">,</span> <span class="n">latitudes</span><span class="p">,</span> <span class="n">longitudes</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate terminator position and solar zenith angle for a given julian date-time within latitude/longitude limits</span>
+<span class="sd">Note that for plotting only, basemap has a built-in terminator</span>
+<span class="sd">    """</span>
+    <span class="n">jd</span> <span class="o">=</span> <span class="n">getJD</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">calcTimeJulianCent</span><span class="p">(</span><span class="n">jd</span><span class="p">)</span>
+    <span class="n">ut</span> <span class="o">=</span> <span class="p">(</span> <span class="n">jd</span> <span class="o">-</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">jd</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="p">)</span><span class="o">*</span><span class="mf">1440.</span>
+    <span class="n">npoints</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">zen</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">npoints</span><span class="p">,</span><span class="n">npoints</span><span class="p">))</span>
+    <span class="n">lats</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">latitudes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">latitudes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">npoints</span><span class="p">)</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">longitudes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">longitudes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">num</span><span class="o">=</span><span class="n">npoints</span><span class="p">)</span>
+    <span class="n">term</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ilat</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">npoints</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ilon</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">npoints</span><span class="p">):</span>
+            <span class="n">az</span><span class="p">,</span><span class="n">el</span> <span class="o">=</span> <span class="n">calcAzEl</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ut</span><span class="p">,</span> <span class="n">lats</span><span class="p">[</span><span class="o">-</span><span class="n">ilat</span><span class="p">],</span> <span class="n">lons</span><span class="p">[</span><span class="n">ilon</span><span class="p">],</span> <span class="mf">0.</span><span class="p">)</span> 
+            <span class="n">zen</span><span class="p">[</span><span class="o">-</span><span class="n">ilat</span><span class="p">,</span><span class="n">ilon</span><span class="p">]</span> <span class="o">=</span> <span class="n">el</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">90</span> <span class="o">-</span> <span class="n">zen</span><span class="p">[</span><span class="o">-</span><span class="n">ilat</span><span class="p">,:])</span>
+        <span class="n">mins</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">*</span><span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">|</span> \
+            <span class="n">numpy</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">*</span><span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">False</span><span class="p">]</span> 
+        <span class="n">zmin</span> <span class="o">=</span> <span class="n">mins</span> <span class="o">&amp;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="bp">True</span> <span class="ow">in</span> <span class="n">zmin</span><span class="p">:</span>
+            <span class="n">ll</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">zmin</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">lons</span><span class="p">[</span><span class="n">zmin</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">term</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">lats</span><span class="p">[</span><span class="o">-</span><span class="n">ilat</span><span class="p">],</span> <span class="n">ll</span><span class="p">])</span>
+        <span class="n">zmin</span> <span class="o">=</span> <span class="n">mins</span> <span class="o">&amp;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">a</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="bp">False</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">True</span> <span class="ow">in</span> <span class="n">zmin</span><span class="p">:</span>
+            <span class="n">ll</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">zmin</span><span class="p">],</span> <span class="n">lons</span><span class="p">[</span><span class="n">zmin</span><span class="p">])</span>
+            <span class="n">term</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="n">lats</span><span class="p">[</span><span class="o">-</span><span class="n">ilat</span><span class="p">],</span> <span class="n">ll</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">lats</span><span class="p">,</span> <span class="n">lons</span><span class="p">,</span> <span class="n">zen</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="getJD"><a class="viewcode-back" href="http://vtsuperdarn.github.io/davitpy_doc/build/html/utils.calcSun.html#utils.calcSun.getJD">[docs]</a><span class="k">def</span> <span class="nf">getJD</span><span class="p">(</span> <span class="n">date</span> <span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">Calculate julian date for given day, month and year</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+    
+    <span class="k">if</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> 
+        <span class="n">date</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">date</span> <span class="o">+=</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">year</span><span class="o">/</span><span class="mf">100.</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">-</span> <span class="n">A</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">A</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+    <span class="n">jd</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">365.25</span><span class="o">*</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span> <span class="mf">4716.</span><span class="p">))</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">30.6001</span><span class="o">*</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">month</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">date</span><span class="o">.</span><span class="n">day</span> <span class="o">+</span> <span class="n">B</span> <span class="o">-</span> <span class="mf">1524.5</span>
+    <span class="n">jd</span> <span class="o">=</span> <span class="n">jd</span> <span class="o">+</span> <span class="n">date</span><span class="o">.</span><span class="n">hour</span><span class="o">/</span><span class="mf">24.0</span> <span class="o">+</span> <span class="n">date</span><span class="o">.</span><span class="n">minute</span><span class="o">/</span><span class="mf">1440.0</span> <span class="o">+</span> <span class="n">date</span><span class="o">.</span><span class="n">second</span><span class="o">/</span><span class="mf">86400.0</span>
+    <span class="k">return</span> <span class="n">jd</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" style="margin-left: 0px; position: fixed; top: 0px; left: 183.5px;">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/index.html">
+          <img class="logo" src="./utils.calcSun — davitpy_files/davitpy.svg" alt="Logo" style="width: 80%;">
+        </a></p>
+<div id="searchbox" style="">
+  <h3>Quick search</h3>
+    <form class="search" action="http://vtsuperdarn.github.io/davitpy_doc/build/html/search.html" method="get">
+      <input type="text" name="q">
+      <input type="submit" value="Go">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    <div class="sidebartoggle" style="margin-left: 0px; position: fixed; top: 0px; left: 183.5px;"><button id="sidebar-hide" title="click to hide the sidebar">«</button><button id="sidebar-show" style="display: none" title="click to show the sidebar">sidebar »</button></div></div>
+    <div class="relbar-bottom">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/py-modindex.html" title="Python Module Index">modules</a> &nbsp; &nbsp;</li>
+    <li><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/index.html">davitpy</a> »</li>
+
+          <li><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/index.html">Module code</a> »</li>
+          <li><a href="http://vtsuperdarn.github.io/davitpy_doc/build/html/_modules/utils.html">utils</a> »</li> 
+      </ul>
+    </div>
+    </div>
+
+
+    <div class="footer">
+        © Copyright 2013, VT SuperDARN Lab and Friends.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40150576-2', 'vt.edu');
+  ga('send', 'pageview');
+
+</script>
+
+  
+</body></html>

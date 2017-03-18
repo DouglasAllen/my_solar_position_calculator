@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://gist.github.com/mhorbul/259180/3c07d1c62507fe4eb65d5359aefa18046727e338 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+<meta content="origin-when-cross-origin" name="referrer">
+
+  <link crossorigin="anonymous" href="./sun_set_and_rise_calculation.rb_files/frameworks-19e26a1cefb5f1e92203a9468134dbf46b5a5308aeeeee09c96b32fec8c8b044.css" integrity="sha256-GeJqHO+18ekiA6lGgTTb9GtaUwiu7u4JyWsy/sjIsEQ=" media="all" rel="stylesheet">
+  <link crossorigin="anonymous" href="./sun_set_and_rise_calculation.rb_files/github-19a419313cd2041eb49fdf3345293a04db2629e516e308aa7dacd4ebd8103736.css" integrity="sha256-GaQZMTzSBB60n98zRSk6BNsmKeUW4wiqfazU69gQNzY=" media="all" rel="stylesheet">
+  
+  
+  
+  
+
+  <meta name="viewport" content="width=device-width">
+  
+  <title>sun_set_and_rise_calculation.rb</title>
+  <link rel="search" type="application/opensearchdescription+xml" href="https://gist.github.com/opensearch.xml" title="GitHub">
+  <link rel="fluid-icon" href="https://gist.github.com/fluidicon.png" title="GitHub">
+  <meta property="fb:app_id" content="1401488693436528">
+
+    
+    <meta content="https://avatars0.githubusercontent.com/u/2446?v=3&amp;s=400" property="og:image"><meta content="Gist" property="og:site_name"><meta content="object" property="og:type"><meta content="sun_set_and_rise_calculation.rb" property="og:title"><meta content="https://gist.github.com/mhorbul/259180" property="og:url">
+
+  <link rel="assets" href="https://assets-cdn.github.com/">
+  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MTQ2MTc2NjkxOjExYzk4NTMwNDNjMmE1YjhlZjVkNzRkMWM1NjQ1OTVmMDRmYzY4ZGZmYzUwZGJiODY3NzI3Y2QwNGU0OWY0MWU=--7c49eafbcf698e507b4e2c70b6500547493af88b">
+  <meta name="pjax-timeout" content="1000">
+  <link rel="sudo-modal" href="https://gist.github.com/sessions/sudo_modal">
+  <meta name="request-id" content="E637:48A9:BE9A6B:12FCBA5:58C809F2" data-pjax-transient="">
+  
+
+  <meta name="selected-link" value="gist_code" data-pjax-transient="">
+
+  <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
+    <meta name="google-analytics" content="UA-3769691-4">
+
+<meta content="collector.githubapp.com" name="octolytics-host"><meta content="gist" name="octolytics-app-id"><meta content="https://collector.githubapp.com/github-external/browser_event" name="octolytics-event-url"><meta content="E637:48A9:BE9A6B:12FCBA5:58C809F2" name="octolytics-dimension-request_id"><meta content="887598" name="octolytics-actor-id"><meta content="DouglasAllen" name="octolytics-actor-login"><meta content="6895d9251bb49ebc2b6a933b1e4d4767a6eacd5abaf212897347db6f73119d6f" name="octolytics-actor-hash">
+<meta content="/&lt;user-name&gt;/&lt;gist-id&gt;/3c07d1c62507fe4eb65d5359aefa18046727e338" data-pjax-transient="true" name="analytics-location">
+
+
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged In">
+
+
+
+    <meta content="true" name="octolytics-dimension-public"><meta content="259180" name="octolytics-dimension-gist_id"><meta content="259180" name="octolytics-dimension-gist_name"><meta content="false" name="octolytics-dimension-anonymous"><meta content="2446" name="octolytics-dimension-owner_id"><meta content="mhorbul" name="octolytics-dimension-owner_login"><meta content="false" name="octolytics-dimension-forked">
+
+  <meta class="js-ga-set" name="dimension5" content="public">
+  <meta class="js-ga-set" name="dimension6" content="owned">
+  <meta class="js-ga-set" name="dimension7" content="text">
+
+  
+      <meta name="hostname" content="gist.github.com">
+  <meta name="user-login" content="DouglasAllen">
+
+      <meta name="expected-hostname" content="gist.github.com">
+    <meta name="js-proxy-site-detection-payload" content="YTUyYjExMmRiZTA3NzU5ZjNhZTA4Yzc5NzViYWNjOWYwNWVmN2RlMWIzMzNmZTM2NTlkOWNhZjk5YmY5MDczMnx7InJlbW90ZV9hZGRyZXNzIjoiNjcuMTc1LjIyMi4xMjEiLCJyZXF1ZXN0X2lkIjoiRTYzNzo0OEE5OkJFOUE2QjoxMkZDQkE1OjU4QzgwOUYyIiwidGltZXN0YW1wIjoxNDg5NTA0NzU0LCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+
+
+  <meta name="html-safe-nonce" content="f68cd9dfb73a6702da49df56e6f806401312cde3">
+
+  <meta http-equiv="x-pjax-version" content="a92535544f7eba2149f7a198f16545d1">
+  
+
+      <link href="https://gist.github.com/mhorbul.atom" rel="alternate" title="atom" type="application/atom+xml">
+  
+  <link crossorigin="anonymous" href="./sun_set_and_rise_calculation.rb_files/gist-4db8d3dcd7f22088b071599758007d4267f3e256e110ed594acc948aef3ae317.css" integrity="sha256-TbjT3NfyIIiwcVmXWAB9Qmfz4lbhEO1ZSsyUiu864xc=" media="all" rel="stylesheet">
+
+
+
+
+  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+
+  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+
+  <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
+  <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+<meta name="theme-color" content="#1e2327">
+
+
+  <meta name="u2f-support" content="true">
+
+  </head>
+
+  <body class="logged-in env-production">
+    
+
+  <div class="position-relative js-header-wrapper ">
+    <a href="https://gist.github.com/mhorbul/259180/3c07d1c62507fe4eb65d5359aefa18046727e338#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+
+    
+    
+    
+
+
+
+        <div class="header gist-header header-logged-in" role="banner">
+  <div class="container clearfix">
+
+    <a href="https://gist.github.com/" aria-label="Gist Homepage" class="header-logo-wordmark" data-hotkey="g d">
+      <svg aria-hidden="true" class="octicon octicon-logo-github" height="28" version="1.1" viewBox="0 0 45 16" width="78"><path fill-rule="evenodd" d="M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 0 0-.146-.18zm23.696-2.2c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61H33.84c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"></path></svg>
+      <svg aria-hidden="true" class="octicon octicon-logo-gist" height="28" version="1.1" viewBox="0 0 25 16" width="40"><path fill-rule="evenodd" d="M4.7 8.73h2.45v4.02c-.55.27-1.64.34-2.53.34-2.56 0-3.47-2.2-3.47-5.05 0-2.85.91-5.06 3.48-5.06 1.28 0 2.06.23 3.28.73V2.66C7.27 2.33 6.25 2 4.63 2 1.13 2 0 4.69 0 8.03c0 3.34 1.11 6.03 4.63 6.03 1.64 0 2.81-.27 3.59-.64V7.73H4.7v1zm6.39 3.72V6.06h-1.05v6.28c0 1.25.58 1.72 1.72 1.72v-.89c-.48 0-.67-.16-.67-.7v-.02zm.25-8.72c0-.44-.33-.78-.78-.78s-.77.34-.77.78.33.78.77.78.78-.34.78-.78zm4.34 5.69c-1.5-.13-1.78-.48-1.78-1.17 0-.77.33-1.34 1.88-1.34 1.05 0 1.66.16 2.27.36v-.94c-.69-.3-1.52-.39-2.25-.39-2.2 0-2.92 1.2-2.92 2.31 0 1.08.47 1.88 2.73 2.08 1.55.13 1.77.63 1.77 1.34 0 .73-.44 1.42-2.06 1.42-1.11 0-1.86-.19-2.33-.36v.94c.5.2 1.58.39 2.33.39 2.38 0 3.14-1.2 3.14-2.41 0-1.28-.53-2.03-2.75-2.23h-.03zm8.58-2.47v-.86h-2.42v-2.5l-1.08.31v2.11l-1.56.44v.48h1.56v5c0 1.53 1.19 2.13 2.5 2.13.19 0 .52-.02.69-.05v-.89c-.19.03-.41.03-.61.03-.97 0-1.5-.39-1.5-1.34V6.94h2.42v.02-.01z"></path></svg>
+</a>
+    <div class="site-search js-site-search" role="search">
+        <div class="header-search" role="search">
+
+<!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/search" class="position-relative" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+  <label class="header-search-wrapper form-control js-chromeless-input-container">
+    <input type="text" class="form-control js-site-search-focus header-search-input js-navigation-enable js-quicksearch-field" data-hotkey="s" name="q" placeholder="Search…" tabindex="1" autocorrect="off" autocomplete="off" autocapitalize="off">
+  </label>
+
+    <div class="gist-quicksearch-results js-quicksearch-results js-navigation-container" data-quicksearch-url="/search/quick"></div>
+</form></div>
+
+    </div>
+    <ul class="header-nav float-left" role="navigation">
+      <li class="header-nav-item">
+        <a href="https://gist.github.com/discover" class="header-nav-link" data-ga-click="Header, go to all gists, text:all gists">All gists</a>
+      </li>
+
+      <li class="header-nav-item">
+        <a href="https://github.com/" class="header-nav-link" data-ga-click="Header, go to GitHub, text:GitHub">GitHub</a>
+      </li>
+    </ul>
+
+      <ul class="header-nav user-nav float-right" id="user-links">
+        <li class="header-nav-item">
+          <a href="https://gist.github.com/" class="header-nav-link" data-ga-click="Header, go to new gist, text:new gist">New gist</a>
+        </li>
+
+        <li class="header-nav-item dropdown js-menu-container">
+          <button class="btn-link header-nav-link name tooltipped tooltipped-sw js-menu-target" type="button" aria-label="View profile and more" data-ga-click="Header, show menu, icon:avatar">
+            <img alt="@DouglasAllen" class="avatar" height="20" src="./sun_set_and_rise_calculation.rb_files/887598" width="20">
+            <span class="dropdown-caret"></span>
+          </button>
+
+          <div class="dropdown-menu-content js-menu-content">
+            <div class="dropdown-menu dropdown-menu-sw">
+              <div class="dropdown-header header-nav-current-user css-truncate">
+                Signed in as <strong class="css-truncate-target">DouglasAllen</strong>
+              </div>
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item" href="https://gist.github.com/DouglasAllen" data-ga-click="Header, go to your gists, text:your gists">
+                Your gists
+              </a>
+
+              <a class="dropdown-item" href="https://gist.github.com/DouglasAllen/starred" data-ga-click="Header, go to starred gists, text:starred gists">
+                Starred gists
+              </a>
+
+              <a class="dropdown-item" href="https://help.github.com/" data-ga-click="Header, go to help, text:help">
+                Help
+              </a>
+
+              <div class="dropdown-divider"></div>
+
+              <a class="dropdown-item" href="https://github.com/DouglasAllen" data-ga-click="Header, go to profile, text:your profile">
+                Your GitHub profile
+              </a>
+
+              <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/auth/github/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="xhTQX8ivFuhzGgU0557/N1B0J2/Juu+v4mBSoPhL+Zo1BF3XhJjdSdsXVuo4dGtI638mEtKtcbf7abjYhXDFwg=="></div>
+                <button type="submit" class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+                  Sign out
+                </button>
+</form>            </div>
+          </div>
+        </li>
+      </ul>
+
+  </div>
+</div>
+
+
+
+      
+
+  </div>
+
+  <div id="start-of-content" class="accessibility-aid"></div>
+
+    <div id="js-flash-container">
+</div>
+
+
+
+  <div role="main">
+    
+  <div itemscope="" itemtype="http://schema.org/Code">
+    <div id="gist-pjax-container" class="gist-content-wrapper" data-pjax-container="">
+      
+
+  <div class="gisthead pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+    <div class="container">
+        
+
+<div class="container repohead-details-container">
+
+  <ul class="pagehead-actions">
+
+
+    <li>
+          <div class="js-toggler-container js-social-container starring-container ">
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/mhorbul/259180/unstar" class="starred" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="qLPzZumlZuuDyGTO7oUX0VszlzL/Mq/RNZ4QrtHjcBPbt/mKbLGJxFy5cZHlQg2/rJ51/KQhsToju97Cc+zQoQ=="></div>
+      <button type="submit" class="btn btn-sm btn-with-count js-toggler-target" aria-label="Unstar this gist" title="Unstar mhorbul/259180" data-ga-click="Repository, click unstar button, action:gists/gists#show; text:Unstar">
+        <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="https://gist.github.com/mhorbul/259180/stargazers" aria-label="0 users starred this repository">
+          0
+        </a>
+</form>
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/mhorbul/259180/star" class="unstarred" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="2nVos7l5lzXoziADsk46E3h1RIeMp80dz+r8TaZR3KZZ6BR3vyF2xxZBja7khcma4sc3HQlW71/ysX+2qkX0ig=="></div>
+      <button type="submit" class="btn btn-sm btn-with-count js-toggler-target" aria-label="Star this gist" title="Star mhorbul/259180" data-ga-click="Repository, click star button, action:gists/gists#show; text:Star">
+        <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="https://gist.github.com/mhorbul/259180/stargazers" aria-label="0 users starred this repository">
+          0
+        </a>
+</form>  </div>
+
+
+    </li>
+
+      <li>
+          <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/mhorbul/259180/fork" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="BQstR/m4WYmoBUjLkFBIZArVB7sNqoWwVt6gQKCgPTQEEF/gb8o6i8ylidkdzsgs57DeGnPpUiwbVL5AcvoZrg=="></div>
+    <button class="btn btn-sm btn-with-count" type="submit">
+      <svg aria-hidden="true" class="octicon octicon-repo-forked" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M8 1a1.993 1.993 0 0 0-1 3.72V6L5 8 3 6V4.72A1.993 1.993 0 0 0 2 1a1.993 1.993 0 0 0-1 3.72V6.5l3 3v1.78A1.993 1.993 0 0 0 5 15a1.993 1.993 0 0 0 1-3.72V9.5l3-3V4.72A1.993 1.993 0 0 0 8 1zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3 10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zm3-10c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      Fork
+    </button>
+      <span class="social-count">0</span>
+</form>
+      </li>
+
+      <li>
+        <div class="select-menu js-menu-container js-select-menu gist-user-actions">
+          <button class="btn btn-sm select-menu-button icon-only js-menu-target" type="button" aria-haspopup="true" aria-label="Report user">
+            <svg aria-hidden="true" class="octicon octicon-stop" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M10 1H4L0 5v6l4 4h6l4-4V5l-4-4zm3 9.5L9.5 14h-5L1 10.5v-5L4.5 2h5L13 5.5v5zM6 4h2v5H6V4zm0 6h2v2H6v-2z"></path></svg>
+          </button>
+
+          <div class="select-menu-modal-holder js-menu-content js-navigation-container">
+            <div class="select-menu-modal">
+              <div class="select-menu-header">
+                <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+                <span class="select-menu-title">User actions</span>
+              </div>
+              <div class="select-menu-list">
+                <div class="select-menu-item js-navigation-item">
+                  <!-- '"` --><!-- </textarea></xmp> --><form action="https://gist.github.com/mhorbul/259180/report" class="inline-form" method="post"><div><input class="btn-plain select-menu-item-text js-navigation-open" data-confirm="Do you want to report the contents of this gist as abuse?" type="submit" value="Report abuse"><input name="authenticity_token" type="hidden" value="ByZ84XK2B2Js01+9fRRAMzH+L4Q3KCHtKA2EqAsB0Y5PYy1hMbh70w9n/tglElUyDno2FAU+KlmZHJhseN0TSA=="></div></form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+  </ul>
+
+  <h1 class="public css-truncate">
+    <img alt="@mhorbul" class="avatar gist-avatar" height="26" src="./sun_set_and_rise_calculation.rb_files/2446" width="26">
+    <span class="author"><a href="https://gist.github.com/mhorbul" class="url fn" rel="author"><span itemprop="author">mhorbul</span></a></span><!--
+        --><span class="path-divider">/</span><!--
+        --><strong itemprop="name" class="gist-header-title css-truncate-target"><a href="https://gist.github.com/mhorbul/259180">sun_set_and_rise_calculation.rb</a></strong>
+
+    <div class="gist-timestamp">Created <time-ago datetime="2009-12-18T01:04:29Z" title="Dec 17, 2009, 7:04 PM CST">7 years ago</time-ago></div>
+  </h1>
+</div>
+
+<div class="container gist-file-navigation">
+  <div class="float-right file-navigation-options" data-multiple="">
+
+    <div class="file-navigation-option">
+  <input type="hidden" name="protocol_type" value="clone">
+
+  <div class="select-menu js-menu-container js-select-menu">
+    <div class="input-group js-select-button js-zeroclipboard-container">
+      <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone Embed, location:repo overview">
+    Embed
+  </button>
+</div>
+<input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="&lt;script src=&quot;https://gist.github.com/mhorbul/259180.js&quot;&gt;&lt;/script&gt;" aria-label="Clone this repository at &lt;script src=&quot;https://gist.github.com/mhorbul/259180.js&quot;&gt;&lt;/script&gt;" readonly="">
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+</div>
+
+    </div>
+
+    <div class="select-menu-modal-holder">
+      <div class="select-menu-modal js-menu-content" aria-hidden="true">
+        <div class="select-menu-header">
+          <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+          <span class="select-menu-title">What would you like to do?</span>
+        </div>
+
+        <div class="select-menu-list js-navigation-container" role="menu">
+            <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <div class="select-menu-item-text">
+                <input type="radio" name="protocol_selector" value="embed" checked="">
+                <span class="select-menu-item-heading">
+                  
+                  Embed
+                </span>
+                  <span class="description">
+                    Embed this gist in your website.
+                  </span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone Embed, location:repo overview">
+    Embed
+  </button>
+</div>
+<input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="&lt;script src=&quot;https://gist.github.com/mhorbul/259180.js&quot;&gt;&lt;/script&gt;" aria-label="Clone this repository at &lt;script src=&quot;https://gist.github.com/mhorbul/259180.js&quot;&gt;&lt;/script&gt;" readonly="">
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+</div>
+
+                </span>
+              </div>
+            </div>
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <div class="select-menu-item-text">
+                <input type="radio" name="protocol_selector" value="share">
+                <span class="select-menu-item-heading">
+                  
+                  Share
+                </span>
+                  <span class="description">
+                    Copy sharable URL for this gist.
+                  </span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone Share, location:repo overview">
+    Share
+  </button>
+</div>
+<input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="https://gist.github.com/mhorbul/259180" aria-label="Clone this repository at https://gist.github.com/mhorbul/259180" readonly="">
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+</div>
+
+                </span>
+              </div>
+            </div>
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <div class="select-menu-item-text">
+                <input type="radio" name="protocol_selector" value="http">
+                <span class="select-menu-item-heading">
+                  Clone via
+                  HTTPS
+                </span>
+                  <span class="description">
+                    Clone with Git or checkout with SVN using the repository's web address.
+                  </span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone HTTPS, location:repo overview">
+    HTTPS
+  </button>
+</div>
+<input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="https://gist.github.com/259180.git" aria-label="Clone this repository at https://gist.github.com/259180.git" readonly="">
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+</div>
+
+                </span>
+              </div>
+            </div>
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+              <div class="select-menu-item-text">
+                <input type="radio" name="protocol_selector" value="ssh">
+                <span class="select-menu-item-heading">
+                  Clone via
+                  SSH
+                </span>
+                  <span class="description">
+                    Clone with an SSH key and passphrase from your GitHub settings.
+                  </span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <div class="input-group-button">
+  <button type="button" class="btn btn-sm select-menu-button js-menu-target" data-ga-click="Repository, clone SSH, location:repo overview">
+    SSH
+  </button>
+</div>
+<input type="text" class="form-control input-monospace input-sm js-zeroclipboard-target js-url-field" value="git@gist.github.com:259180.git" aria-label="Clone this repository at git@gist.github.com:259180.git" readonly="">
+<div class="input-group-button">
+  <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><svg aria-hidden="true" class="octicon octicon-clippy" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg></button>
+</div>
+
+                </span>
+              </div>
+            </div>
+        </div>
+        <div class="select-menu-list" role="menu">
+          <a class="select-menu-item select-menu-action" href="https://help.github.com/articles/which-remote-url-should-i-use" target="_blank">
+            <svg aria-hidden="true" class="octicon octicon-question select-menu-item-icon" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6 10h2v2H6v-2zm4-3.5C10 8.64 8 9 8 9H6c0-.55.45-1 1-1h.5c.28 0 .5-.22.5-.5v-1c0-.28-.22-.5-.5-.5h-1c-.28 0-.5.22-.5.5V7H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7z"></path></svg>
+            <div class="select-menu-item-text">
+              Learn more about clone URLs
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="file-navigation-option">
+    <div class="select-menu js-menu-container select-menu-modal-right js-select-menu">
+      <button type="button" class="btn btn-sm select-menu-button icon-only js-menu-target">
+        <svg aria-hidden="true" class="octicon octicon-desktop-download" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 6h3V0h2v6h3l-4 4-4-4zm11-4h-4v1h4v8H1V3h4V2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1z"></path></svg>
+      </button>
+      <div class="select-menu-modal-holder">
+        <div class="select-menu-modal select-menu-modal-narrow js-menu-content" aria-hidden="true">
+          <div class="select-menu-header">
+            <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+            <span class="select-menu-title">Open repository with…</span>
+          </div>
+          <div class="select-menu-list js-navigation-container" role="menu">
+            <a class="select-menu-item js-navigation-item" href="github-windows://openRepo/https://gist.github.com/259180" role="menuitem" tabindex="0">
+              <span class="select-menu-item-text">
+                GitHub Desktop
+              </span>
+            </a>
+            <a class="select-menu-item js-navigation-item" href="git-client://clone?repo=https%3A%2F%2Fgist.github.com%2Fmhorbul%2F259180" role="menuitem" tabindex="0">
+              <span class="select-menu-item-text">
+                Visual Studio
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+    <div class="file-navigation-option">
+      <a href="https://gist.github.com/mhorbul/259180/archive/3c07d1c62507fe4eb65d5359aefa18046727e338.zip" class="btn btn-sm" rel="nofollow" data-ga-click="Gist, download zip, location:gist overview">
+        Download ZIP
+      </a>
+    </div>
+  </div>
+
+  <div class="float-left">
+    <nav class="reponav js-repo-nav js-sidenav-container-pjax" role="navigation" data-pjax="#gist-pjax-container">
+
+  <a href="https://gist.github.com/mhorbul/259180" aria-label="Code" class="js-selected-navigation-item selected reponav-item" data-hotkey="g c" data-pjax="true" data-selected-links="gist_code /mhorbul/259180">
+    <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+    Code
+</a>
+    <a href="https://gist.github.com/mhorbul/259180/revisions" aria-label="Revisions" class="js-selected-navigation-item reponav-item" data-hotkey="g r" data-pjax="true" data-selected-links="gist_revisions /mhorbul/259180/revisions">
+      <svg aria-hidden="true" class="octicon octicon-git-commit" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M10.86 7c-.45-1.72-2-3-3.86-3-1.86 0-3.41 1.28-3.86 3H0v2h3.14c.45 1.72 2 3 3.86 3 1.86 0 3.41-1.28 3.86-3H14V7h-3.14zM7 10.2c-1.22 0-2.2-.98-2.2-2.2 0-1.22.98-2.2 2.2-2.2 1.22 0 2.2.98 2.2 2.2 0 1.22-.98 2.2-2.2 2.2z"></path></svg>
+      Revisions
+      <span class="counter">3</span>
+</a>
+
+</nav>
+
+  </div>
+</div>
+
+
+    </div><!-- /.container -->
+  </div><!-- /.repohead -->
+
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="repository-content gist-content">
+    
+
+
+
+<div>
+  <div class="repository-meta js-details-container Details">
+</div>
+
+
+      <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-gistfile1-txt" class="file">
+      <div class="file-header">
+        <div class="file-actions">
+
+          <a href="https://gist.github.com/mhorbul/259180/raw/3c07d1c62507fe4eb65d5359aefa18046727e338/gistfile1.txt" class="btn btn-sm ">Raw</a>
+        </div>
+        <div class="file-info">
+          <span class="icon">
+            <svg aria-hidden="true" class="octicon octicon-gist" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.5 5L10 7.5 7.5 10l-.75-.75L8.5 7.5 6.75 5.75 7.5 5zm-3 0L2 7.5 4.5 10l.75-.75L3.5 7.5l1.75-1.75L4.5 5zM0 13V2c0-.55.45-1 1-1h10c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1zm1 0h10V2H1v11z"></path></svg>
+          </span>
+          <a class="tooltipped tooltipped-s css-truncate" aria-label="Permalink" href="https://gist.github.com/mhorbul/259180/3c07d1c62507fe4eb65d5359aefa18046727e338#file-gistfile1-txt">
+            <strong class="user-select-contain gist-blob-name css-truncate-target">
+              gistfile1.txt
+            </strong>
+          </a>
+        </div>
+      </div>
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-gistfile1-txt-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-gistfile1-txt-LC1" class="blob-code blob-code-inner js-file-line">require 'time'</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-gistfile1-txt-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-gistfile1-txt-LC3" class="blob-code blob-code-inner js-file-line">def deg2rad(d)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-gistfile1-txt-LC4" class="blob-code blob-code-inner js-file-line">    (d/180.0)*Math::PI</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-gistfile1-txt-LC5" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-gistfile1-txt-LC6" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-gistfile1-txt-LC7" class="blob-code blob-code-inner js-file-line">def rad2deg(r)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-gistfile1-txt-LC8" class="blob-code blob-code-inner js-file-line">    (r/Math::PI)*180</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-gistfile1-txt-LC9" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-gistfile1-txt-LC10" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-gistfile1-txt-LC11" class="blob-code blob-code-inner js-file-line">def jd(year, month, day)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-gistfile1-txt-LC12" class="blob-code blob-code-inner js-file-line">  puts ARGV</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-gistfile1-txt-LC13" class="blob-code blob-code-inner js-file-line">  if (month &lt;= 2)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-gistfile1-txt-LC14" class="blob-code blob-code-inner js-file-line">    year -= 1; month += 12</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-gistfile1-txt-LC15" class="blob-code blob-code-inner js-file-line">  end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-gistfile1-txt-LC16" class="blob-code blob-code-inner js-file-line">  a = (year/100).floor</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-gistfile1-txt-LC17" class="blob-code blob-code-inner js-file-line">  b = 2 - a + (a/4).floor</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-gistfile1-txt-LC18" class="blob-code blob-code-inner js-file-line">  (365.25*(year + 4716)).floor +</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-gistfile1-txt-LC19" class="blob-code blob-code-inner js-file-line">    (30.6001*(month+1)).floor + </td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-gistfile1-txt-LC20" class="blob-code blob-code-inner js-file-line">    day + b - 1524.5</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-gistfile1-txt-LC21" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-gistfile1-txt-LC22" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-gistfile1-txt-LC23" class="blob-code blob-code-inner js-file-line">def jd2cent(jd)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-gistfile1-txt-LC24" class="blob-code blob-code-inner js-file-line">  (jd - 2451545.0)/36525.0</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-gistfile1-txt-LC25" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-gistfile1-txt-LC26" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-gistfile1-txt-LC27" class="blob-code blob-code-inner js-file-line">def cent2jd(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-gistfile1-txt-LC28" class="blob-code blob-code-inner js-file-line">  t * 36525.0 + 2451545.0</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-gistfile1-txt-LC29" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-gistfile1-txt-LC30" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-gistfile1-txt-LC31" class="blob-code blob-code-inner js-file-line">def mean_obliquity_of_ecliptic(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-gistfile1-txt-LC32" class="blob-code blob-code-inner js-file-line">   seconds = 21.448 - t*(46.8150 + t*(0.00059 - t*(0.001813)))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-gistfile1-txt-LC33" class="blob-code blob-code-inner js-file-line">   23.0 + (26.0 + (seconds/60.0))/60.0</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="file-gistfile1-txt-LC34" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="file-gistfile1-txt-LC35" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="file-gistfile1-txt-LC36" class="blob-code blob-code-inner js-file-line">def obliquity_correction(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="file-gistfile1-txt-LC37" class="blob-code blob-code-inner js-file-line">  e0 = mean_obliquity_of_ecliptic(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="file-gistfile1-txt-LC38" class="blob-code blob-code-inner js-file-line">  omega = 125.04 - 1934.136 * t</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="file-gistfile1-txt-LC39" class="blob-code blob-code-inner js-file-line">  e0 + 0.00256 * Math.cos(deg2rad(omega))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L40" class="blob-num js-line-number" data-line-number="40"></td>
+        <td id="file-gistfile1-txt-LC40" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L41" class="blob-num js-line-number" data-line-number="41"></td>
+        <td id="file-gistfile1-txt-LC41" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L42" class="blob-num js-line-number" data-line-number="42"></td>
+        <td id="file-gistfile1-txt-LC42" class="blob-code blob-code-inner js-file-line">def sun_true_long(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L43" class="blob-num js-line-number" data-line-number="43"></td>
+        <td id="file-gistfile1-txt-LC43" class="blob-code blob-code-inner js-file-line">  geom_mean_long_sun(t) + sun_eq_of_center(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L44" class="blob-num js-line-number" data-line-number="44"></td>
+        <td id="file-gistfile1-txt-LC44" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L45" class="blob-num js-line-number" data-line-number="45"></td>
+        <td id="file-gistfile1-txt-LC45" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L46" class="blob-num js-line-number" data-line-number="46"></td>
+        <td id="file-gistfile1-txt-LC46" class="blob-code blob-code-inner js-file-line">def sun_apparent_long(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L47" class="blob-num js-line-number" data-line-number="47"></td>
+        <td id="file-gistfile1-txt-LC47" class="blob-code blob-code-inner js-file-line">  o = sun_true_long(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L48" class="blob-num js-line-number" data-line-number="48"></td>
+        <td id="file-gistfile1-txt-LC48" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L49" class="blob-num js-line-number" data-line-number="49"></td>
+        <td id="file-gistfile1-txt-LC49" class="blob-code blob-code-inner js-file-line">  omega = 125.04 - 1934.136 * t;</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L50" class="blob-num js-line-number" data-line-number="50"></td>
+        <td id="file-gistfile1-txt-LC50" class="blob-code blob-code-inner js-file-line">  o - 0.00569 - 0.00478 * Math.sin(deg2rad(omega))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L51" class="blob-num js-line-number" data-line-number="51"></td>
+        <td id="file-gistfile1-txt-LC51" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L52" class="blob-num js-line-number" data-line-number="52"></td>
+        <td id="file-gistfile1-txt-LC52" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L53" class="blob-num js-line-number" data-line-number="53"></td>
+        <td id="file-gistfile1-txt-LC53" class="blob-code blob-code-inner js-file-line">def sun_declination(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L54" class="blob-num js-line-number" data-line-number="54"></td>
+        <td id="file-gistfile1-txt-LC54" class="blob-code blob-code-inner js-file-line">  e = obliquity_correction(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L55" class="blob-num js-line-number" data-line-number="55"></td>
+        <td id="file-gistfile1-txt-LC55" class="blob-code blob-code-inner js-file-line">  lambda = sun_apparent_long(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L56" class="blob-num js-line-number" data-line-number="56"></td>
+        <td id="file-gistfile1-txt-LC56" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L57" class="blob-num js-line-number" data-line-number="57"></td>
+        <td id="file-gistfile1-txt-LC57" class="blob-code blob-code-inner js-file-line">  sint = Math.sin(deg2rad(e)) * Math.sin(deg2rad(lambda))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L58" class="blob-num js-line-number" data-line-number="58"></td>
+        <td id="file-gistfile1-txt-LC58" class="blob-code blob-code-inner js-file-line">  rad2deg(Math.asin(sint))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L59" class="blob-num js-line-number" data-line-number="59"></td>
+        <td id="file-gistfile1-txt-LC59" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L60" class="blob-num js-line-number" data-line-number="60"></td>
+        <td id="file-gistfile1-txt-LC60" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L61" class="blob-num js-line-number" data-line-number="61"></td>
+        <td id="file-gistfile1-txt-LC61" class="blob-code blob-code-inner js-file-line">def sun_eq_of_center(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L62" class="blob-num js-line-number" data-line-number="62"></td>
+        <td id="file-gistfile1-txt-LC62" class="blob-code blob-code-inner js-file-line">  m = geom_mean_anomaly_sun(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L63" class="blob-num js-line-number" data-line-number="63"></td>
+        <td id="file-gistfile1-txt-LC63" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L64" class="blob-num js-line-number" data-line-number="64"></td>
+        <td id="file-gistfile1-txt-LC64" class="blob-code blob-code-inner js-file-line">  mrad = deg2rad(m)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L65" class="blob-num js-line-number" data-line-number="65"></td>
+        <td id="file-gistfile1-txt-LC65" class="blob-code blob-code-inner js-file-line">  sinm = Math.sin(mrad);</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L66" class="blob-num js-line-number" data-line-number="66"></td>
+        <td id="file-gistfile1-txt-LC66" class="blob-code blob-code-inner js-file-line">  sin2m = Math.sin(mrad+mrad);</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L67" class="blob-num js-line-number" data-line-number="67"></td>
+        <td id="file-gistfile1-txt-LC67" class="blob-code blob-code-inner js-file-line">  sin3m = Math.sin(mrad+mrad+mrad);</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L68" class="blob-num js-line-number" data-line-number="68"></td>
+        <td id="file-gistfile1-txt-LC68" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L69" class="blob-num js-line-number" data-line-number="69"></td>
+        <td id="file-gistfile1-txt-LC69" class="blob-code blob-code-inner js-file-line">  sinm * (1.914602 - t * (0.004817 + 0.000014 * t)) +</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L70" class="blob-num js-line-number" data-line-number="70"></td>
+        <td id="file-gistfile1-txt-LC70" class="blob-code blob-code-inner js-file-line">    sin2m * (0.019993 - 0.000101 * t) + sin3m * 0.000289</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L71" class="blob-num js-line-number" data-line-number="71"></td>
+        <td id="file-gistfile1-txt-LC71" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L72" class="blob-num js-line-number" data-line-number="72"></td>
+        <td id="file-gistfile1-txt-LC72" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L73" class="blob-num js-line-number" data-line-number="73"></td>
+        <td id="file-gistfile1-txt-LC73" class="blob-code blob-code-inner js-file-line">def geom_mean_long_sun(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L74" class="blob-num js-line-number" data-line-number="74"></td>
+        <td id="file-gistfile1-txt-LC74" class="blob-code blob-code-inner js-file-line">  l0 = 280.46646 + t * (36000.76983 + 0.0003032 * t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L75" class="blob-num js-line-number" data-line-number="75"></td>
+        <td id="file-gistfile1-txt-LC75" class="blob-code blob-code-inner js-file-line">  l0 += (l0 &lt; 0) ? 360 : (l0 &gt; 360 ? -360 : 0)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L76" class="blob-num js-line-number" data-line-number="76"></td>
+        <td id="file-gistfile1-txt-LC76" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L77" class="blob-num js-line-number" data-line-number="77"></td>
+        <td id="file-gistfile1-txt-LC77" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L78" class="blob-num js-line-number" data-line-number="78"></td>
+        <td id="file-gistfile1-txt-LC78" class="blob-code blob-code-inner js-file-line">def eccentricity_earth_orbit(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L79" class="blob-num js-line-number" data-line-number="79"></td>
+        <td id="file-gistfile1-txt-LC79" class="blob-code blob-code-inner js-file-line">   0.016708634 - t * (0.000042037 + 0.0000001267 * t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L80" class="blob-num js-line-number" data-line-number="80"></td>
+        <td id="file-gistfile1-txt-LC80" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L81" class="blob-num js-line-number" data-line-number="81"></td>
+        <td id="file-gistfile1-txt-LC81" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L82" class="blob-num js-line-number" data-line-number="82"></td>
+        <td id="file-gistfile1-txt-LC82" class="blob-code blob-code-inner js-file-line">def geom_mean_anomaly_sun(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L83" class="blob-num js-line-number" data-line-number="83"></td>
+        <td id="file-gistfile1-txt-LC83" class="blob-code blob-code-inner js-file-line">  357.52911 + t * (35999.05029 - 0.0001537 * t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L84" class="blob-num js-line-number" data-line-number="84"></td>
+        <td id="file-gistfile1-txt-LC84" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L85" class="blob-num js-line-number" data-line-number="85"></td>
+        <td id="file-gistfile1-txt-LC85" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L86" class="blob-num js-line-number" data-line-number="86"></td>
+        <td id="file-gistfile1-txt-LC86" class="blob-code blob-code-inner js-file-line">def equation_of_time(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L87" class="blob-num js-line-number" data-line-number="87"></td>
+        <td id="file-gistfile1-txt-LC87" class="blob-code blob-code-inner js-file-line">  epsilon = obliquity_correction(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L88" class="blob-num js-line-number" data-line-number="88"></td>
+        <td id="file-gistfile1-txt-LC88" class="blob-code blob-code-inner js-file-line">  l0 = geom_mean_long_sun(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L89" class="blob-num js-line-number" data-line-number="89"></td>
+        <td id="file-gistfile1-txt-LC89" class="blob-code blob-code-inner js-file-line">  e = eccentricity_earth_orbit(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L90" class="blob-num js-line-number" data-line-number="90"></td>
+        <td id="file-gistfile1-txt-LC90" class="blob-code blob-code-inner js-file-line">  m = geom_mean_anomaly_sun(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L91" class="blob-num js-line-number" data-line-number="91"></td>
+        <td id="file-gistfile1-txt-LC91" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L92" class="blob-num js-line-number" data-line-number="92"></td>
+        <td id="file-gistfile1-txt-LC92" class="blob-code blob-code-inner js-file-line">  y = Math.tan(deg2rad(epsilon)/2.0)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L93" class="blob-num js-line-number" data-line-number="93"></td>
+        <td id="file-gistfile1-txt-LC93" class="blob-code blob-code-inner js-file-line">  y *= y</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L94" class="blob-num js-line-number" data-line-number="94"></td>
+        <td id="file-gistfile1-txt-LC94" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L95" class="blob-num js-line-number" data-line-number="95"></td>
+        <td id="file-gistfile1-txt-LC95" class="blob-code blob-code-inner js-file-line">  sin2l0 = Math.sin(2.0 * deg2rad(l0))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L96" class="blob-num js-line-number" data-line-number="96"></td>
+        <td id="file-gistfile1-txt-LC96" class="blob-code blob-code-inner js-file-line">  sinm = Math.sin(deg2rad(m))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L97" class="blob-num js-line-number" data-line-number="97"></td>
+        <td id="file-gistfile1-txt-LC97" class="blob-code blob-code-inner js-file-line">  cos2l0 = Math.cos(2.0 * deg2rad(l0))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L98" class="blob-num js-line-number" data-line-number="98"></td>
+        <td id="file-gistfile1-txt-LC98" class="blob-code blob-code-inner js-file-line">  sin4l0 = Math.sin(4.0 * deg2rad(l0))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L99" class="blob-num js-line-number" data-line-number="99"></td>
+        <td id="file-gistfile1-txt-LC99" class="blob-code blob-code-inner js-file-line">  sin2m = Math.sin(2.0 * deg2rad(m))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L100" class="blob-num js-line-number" data-line-number="100"></td>
+        <td id="file-gistfile1-txt-LC100" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L101" class="blob-num js-line-number" data-line-number="101"></td>
+        <td id="file-gistfile1-txt-LC101" class="blob-code blob-code-inner js-file-line">  etime = y * sin2l0 - 2.0 * e * sinm + 4.0 * e * y *</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L102" class="blob-num js-line-number" data-line-number="102"></td>
+        <td id="file-gistfile1-txt-LC102" class="blob-code blob-code-inner js-file-line">    sinm * cos2l0 - 0.5 * y * y * </td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L103" class="blob-num js-line-number" data-line-number="103"></td>
+        <td id="file-gistfile1-txt-LC103" class="blob-code blob-code-inner js-file-line">      sin4l0 - 1.25 * e * e * sin2m</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L104" class="blob-num js-line-number" data-line-number="104"></td>
+        <td id="file-gistfile1-txt-LC104" class="blob-code blob-code-inner js-file-line">  rad2deg(etime)*4.0</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L105" class="blob-num js-line-number" data-line-number="105"></td>
+        <td id="file-gistfile1-txt-LC105" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L106" class="blob-num js-line-number" data-line-number="106"></td>
+        <td id="file-gistfile1-txt-LC106" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L107" class="blob-num js-line-number" data-line-number="107"></td>
+        <td id="file-gistfile1-txt-LC107" class="blob-code blob-code-inner js-file-line">def sol_noon_utc(t, longitude)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L108" class="blob-num js-line-number" data-line-number="108"></td>
+        <td id="file-gistfile1-txt-LC108" class="blob-code blob-code-inner js-file-line">  tnoon = jd2cent(cent2jd(t) + longitude/360.0)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L109" class="blob-num js-line-number" data-line-number="109"></td>
+        <td id="file-gistfile1-txt-LC109" class="blob-code blob-code-inner js-file-line">  eq_time = equation_of_time(tnoon)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L110" class="blob-num js-line-number" data-line-number="110"></td>
+        <td id="file-gistfile1-txt-LC110" class="blob-code blob-code-inner js-file-line">  sol_noon_utc = 720 + (longitude * 4) - eq_time</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L111" class="blob-num js-line-number" data-line-number="111"></td>
+        <td id="file-gistfile1-txt-LC111" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L112" class="blob-num js-line-number" data-line-number="112"></td>
+        <td id="file-gistfile1-txt-LC112" class="blob-code blob-code-inner js-file-line">  newt = jd2cent(cent2jd(t) -0.5 + sol_noon_utc/1440.0)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L113" class="blob-num js-line-number" data-line-number="113"></td>
+        <td id="file-gistfile1-txt-LC113" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L114" class="blob-num js-line-number" data-line-number="114"></td>
+        <td id="file-gistfile1-txt-LC114" class="blob-code blob-code-inner js-file-line">  720 + (longitude * 4) - equation_of_time(newt)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L115" class="blob-num js-line-number" data-line-number="115"></td>
+        <td id="file-gistfile1-txt-LC115" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L116" class="blob-num js-line-number" data-line-number="116"></td>
+        <td id="file-gistfile1-txt-LC116" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L117" class="blob-num js-line-number" data-line-number="117"></td>
+        <td id="file-gistfile1-txt-LC117" class="blob-code blob-code-inner js-file-line">def hour_angle(lat, solar_dec)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L118" class="blob-num js-line-number" data-line-number="118"></td>
+        <td id="file-gistfile1-txt-LC118" class="blob-code blob-code-inner js-file-line">  lat_rad = deg2rad(lat)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L119" class="blob-num js-line-number" data-line-number="119"></td>
+        <td id="file-gistfile1-txt-LC119" class="blob-code blob-code-inner js-file-line">  sd_rad  = deg2rad(solar_dec)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L120" class="blob-num js-line-number" data-line-number="120"></td>
+        <td id="file-gistfile1-txt-LC120" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L121" class="blob-num js-line-number" data-line-number="121"></td>
+        <td id="file-gistfile1-txt-LC121" class="blob-code blob-code-inner js-file-line">  Math.acos(Math.cos(deg2rad(90.833))/</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L122" class="blob-num js-line-number" data-line-number="122"></td>
+        <td id="file-gistfile1-txt-LC122" class="blob-code blob-code-inner js-file-line">    (Math.cos(lat_rad)*Math.cos(sd_rad))-</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L123" class="blob-num js-line-number" data-line-number="123"></td>
+        <td id="file-gistfile1-txt-LC123" class="blob-code blob-code-inner js-file-line">      Math.tan(lat_rad) * Math.tan(sd_rad))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L124" class="blob-num js-line-number" data-line-number="124"></td>
+        <td id="file-gistfile1-txt-LC124" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L125" class="blob-num js-line-number" data-line-number="125"></td>
+        <td id="file-gistfile1-txt-LC125" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L126" class="blob-num js-line-number" data-line-number="126"></td>
+        <td id="file-gistfile1-txt-LC126" class="blob-code blob-code-inner js-file-line">def min2time(minutes, date)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L127" class="blob-num js-line-number" data-line-number="127"></td>
+        <td id="file-gistfile1-txt-LC127" class="blob-code blob-code-inner js-file-line">  float_hours = minutes / 60.0</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L128" class="blob-num js-line-number" data-line-number="128"></td>
+        <td id="file-gistfile1-txt-LC128" class="blob-code blob-code-inner js-file-line">  if float_hours &gt;= 24</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L129" class="blob-num js-line-number" data-line-number="129"></td>
+        <td id="file-gistfile1-txt-LC129" class="blob-code blob-code-inner js-file-line">    date += 24 * 3600</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L130" class="blob-num js-line-number" data-line-number="130"></td>
+        <td id="file-gistfile1-txt-LC130" class="blob-code blob-code-inner js-file-line">    float_hours = float_hours - 24</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L131" class="blob-num js-line-number" data-line-number="131"></td>
+        <td id="file-gistfile1-txt-LC131" class="blob-code blob-code-inner js-file-line">  end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L132" class="blob-num js-line-number" data-line-number="132"></td>
+        <td id="file-gistfile1-txt-LC132" class="blob-code blob-code-inner js-file-line">  hours = float_hours.floor</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L133" class="blob-num js-line-number" data-line-number="133"></td>
+        <td id="file-gistfile1-txt-LC133" class="blob-code blob-code-inner js-file-line">  float_min = 60.0 * (float_hours - hours)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L134" class="blob-num js-line-number" data-line-number="134"></td>
+        <td id="file-gistfile1-txt-LC134" class="blob-code blob-code-inner js-file-line">  min = float_min.floor</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L135" class="blob-num js-line-number" data-line-number="135"></td>
+        <td id="file-gistfile1-txt-LC135" class="blob-code blob-code-inner js-file-line">  float_sec = 60.0 * (float_min - min)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L136" class="blob-num js-line-number" data-line-number="136"></td>
+        <td id="file-gistfile1-txt-LC136" class="blob-code blob-code-inner js-file-line">  sec = float_sec.floor</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L137" class="blob-num js-line-number" data-line-number="137"></td>
+        <td id="file-gistfile1-txt-LC137" class="blob-code blob-code-inner js-file-line">  Time.gm(date.year, date.month, date.day, hours, min, sec)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L138" class="blob-num js-line-number" data-line-number="138"></td>
+        <td id="file-gistfile1-txt-LC138" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L139" class="blob-num js-line-number" data-line-number="139"></td>
+        <td id="file-gistfile1-txt-LC139" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L140" class="blob-num js-line-number" data-line-number="140"></td>
+        <td id="file-gistfile1-txt-LC140" class="blob-code blob-code-inner js-file-line">def calc_sun_rise_or_set(t, latitude, longitude, type)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L141" class="blob-num js-line-number" data-line-number="141"></td>
+        <td id="file-gistfile1-txt-LC141" class="blob-code blob-code-inner js-file-line">  eq_time = equation_of_time(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L142" class="blob-num js-line-number" data-line-number="142"></td>
+        <td id="file-gistfile1-txt-LC142" class="blob-code blob-code-inner js-file-line">  solar_dec = sun_declination(t)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L143" class="blob-num js-line-number" data-line-number="143"></td>
+        <td id="file-gistfile1-txt-LC143" class="blob-code blob-code-inner js-file-line">  hour_angle = hour_angle(latitude, solar_dec)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L144" class="blob-num js-line-number" data-line-number="144"></td>
+        <td id="file-gistfile1-txt-LC144" class="blob-code blob-code-inner js-file-line">  hour_angle *= -1 if type == :sunset</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L145" class="blob-num js-line-number" data-line-number="145"></td>
+        <td id="file-gistfile1-txt-LC145" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L146" class="blob-num js-line-number" data-line-number="146"></td>
+        <td id="file-gistfile1-txt-LC146" class="blob-code blob-code-inner js-file-line">  time_diff = 4 * (longitude - rad2deg(hour_angle))</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L147" class="blob-num js-line-number" data-line-number="147"></td>
+        <td id="file-gistfile1-txt-LC147" class="blob-code blob-code-inner js-file-line">  720 + time_diff - eq_time</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L148" class="blob-num js-line-number" data-line-number="148"></td>
+        <td id="file-gistfile1-txt-LC148" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L149" class="blob-num js-line-number" data-line-number="149"></td>
+        <td id="file-gistfile1-txt-LC149" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L150" class="blob-num js-line-number" data-line-number="150"></td>
+        <td id="file-gistfile1-txt-LC150" class="blob-code blob-code-inner js-file-line">def sun_rise_or_set_utc(date, latitude, longitude, utc_offset, type)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L151" class="blob-num js-line-number" data-line-number="151"></td>
+        <td id="file-gistfile1-txt-LC151" class="blob-code blob-code-inner js-file-line">  jd = jd(date.year, date.month, date.day)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L152" class="blob-num js-line-number" data-line-number="152"></td>
+        <td id="file-gistfile1-txt-LC152" class="blob-code blob-code-inner js-file-line">  t = jd2cent(jd)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L153" class="blob-num js-line-number" data-line-number="153"></td>
+        <td id="file-gistfile1-txt-LC153" class="blob-code blob-code-inner js-file-line">  noonmin = sol_noon_utc(t, longitude)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L154" class="blob-num js-line-number" data-line-number="154"></td>
+        <td id="file-gistfile1-txt-LC154" class="blob-code blob-code-inner js-file-line">  tnoon = jd2cent(jd + noonmin/1440.0)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L155" class="blob-num js-line-number" data-line-number="155"></td>
+        <td id="file-gistfile1-txt-LC155" class="blob-code blob-code-inner js-file-line">  time_utc = calc_sun_rise_or_set(tnoon, latitude, longitude, type)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L156" class="blob-num js-line-number" data-line-number="156"></td>
+        <td id="file-gistfile1-txt-LC156" class="blob-code blob-code-inner js-file-line">  newt = jd2cent(cent2jd(t) + time_utc/1440.0)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L157" class="blob-num js-line-number" data-line-number="157"></td>
+        <td id="file-gistfile1-txt-LC157" class="blob-code blob-code-inner js-file-line">  time_gmt = calc_sun_rise_or_set(newt, latitude, longitude, type)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L158" class="blob-num js-line-number" data-line-number="158"></td>
+        <td id="file-gistfile1-txt-LC158" class="blob-code blob-code-inner js-file-line">  min2time(time_gmt, date) + utc_offset * 3600</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L159" class="blob-num js-line-number" data-line-number="159"></td>
+        <td id="file-gistfile1-txt-LC159" class="blob-code blob-code-inner js-file-line">end</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L160" class="blob-num js-line-number" data-line-number="160"></td>
+        <td id="file-gistfile1-txt-LC160" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L161" class="blob-num js-line-number" data-line-number="161"></td>
+        <td id="file-gistfile1-txt-LC161" class="blob-code blob-code-inner js-file-line">date = Time.parse('12/17/2009')</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L162" class="blob-num js-line-number" data-line-number="162"></td>
+        <td id="file-gistfile1-txt-LC162" class="blob-code blob-code-inner js-file-line">lat = 37.766666666666666</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L163" class="blob-num js-line-number" data-line-number="163"></td>
+        <td id="file-gistfile1-txt-LC163" class="blob-code blob-code-inner js-file-line">lng = 122.41666666666667</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L164" class="blob-num js-line-number" data-line-number="164"></td>
+        <td id="file-gistfile1-txt-LC164" class="blob-code blob-code-inner js-file-line">utc_offset = -8</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L165" class="blob-num js-line-number" data-line-number="165"></td>
+        <td id="file-gistfile1-txt-LC165" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L166" class="blob-num js-line-number" data-line-number="166"></td>
+        <td id="file-gistfile1-txt-LC166" class="blob-code blob-code-inner js-file-line">puts sun_rise_or_set_utc(date, lat, lng, utc_offset, :sunrise)</td>
+      </tr>
+      <tr>
+        <td id="file-gistfile1-txt-L167" class="blob-num js-line-number" data-line-number="167"></td>
+        <td id="file-gistfile1-txt-LC167" class="blob-code blob-code-inner js-file-line">puts sun_rise_or_set_utc(date, lat, lng, utc_offset, :sunset)</td>
+      </tr>
+</tbody></table>
+
+  </div>
+
+  </div>
+  
+</div>
+
+
+  <a name="comments"></a>
+  <div class="discussion-timeline gist-discussion-timeline js-quote-selection-container ">
+    <div class="js-discussion js-socket-channel" data-channel="marked-as-read:gist:259180">
+      
+
+
+
+
+<!-- Rendered timeline since 2015-09-03 20:45:20 -->
+<div class="timeline-comment-wrapper js-comment-container">
+    <a href="https://gist.github.com/DouglasAllen"><img alt="@DouglasAllen" class="timeline-comment-avatar" height="44" src="./sun_set_and_rise_calculation.rb_files/887598(1)" width="44"></a>
+    
+
+<div id="gistcomment-2026976" class="comment previewable-edit timeline-comment js-comment js-task-list-container
+                    
+                    current-user  js-reorderable-task-lists reorderable-task-lists" data-body-version="7fb3ba5752963f432655bbf7fd2a7ebd">
+
+  
+<div class="timeline-comment-header ">
+  <div class="timeline-comment-actions">
+
+      <button type="button" class="btn-link timeline-comment-action js-comment-edit-button tooltipped tooltipped-nw" aria-label="Edit comment">
+        <svg aria-hidden="true" class="octicon octicon-pencil" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg>
+      </button>
+
+      <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/mhorbul/259180/comments/2026976" class="inline-form js-comment-delete" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="delete"><input name="authenticity_token" type="hidden" value="HaB6ACVzBVVpz7Ht0hEhBiyjjENcADYzxgLaV5ZVhXNNEmuaelR8Uru5ZyqFFIBaf6XgnvxLD8lSlZ0SxW/hnQ=="></div>
+        <button type="submit" class="btn-link timeline-comment-action delete-button tooltipped tooltipped-nw" aria-label="Delete comment" data-confirm="Are you sure you want to delete this?">
+          <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+        </button>
+</form>  </div>
+
+    
+
+
+
+  <div class="timeline-comment-header-text">
+
+    <strong>
+      <a href="https://gist.github.com/DouglasAllen" class="author">DouglasAllen</a> 
+    </strong>
+
+    commented
+
+      <a href="https://gist.github.com/mhorbul/259180/3c07d1c62507fe4eb65d5359aefa18046727e338#gistcomment-2026976" class="timestamp"><relative-time datetime="2017-03-14T16:09:32Z" title="Mar 14, 2017, 11:09 AM CDT">8 hours ago</relative-time></a>
+
+  </div>
+</div>
+
+
+  <div class="edit-comment-hide">
+      <p class="comment-form-stale">
+        <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg> The content you are editing has changed. Please try again.
+      </p>
+    <table class="d-block">
+      <tbody class="d-block">
+        <tr class="d-block">
+          <td class="d-block comment-body markdown-body markdown-format js-comment-body">
+              <p>You don't really need to calculate a Julian Day Number. Ruby has that in the Date and DateTime classes of the standard library.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/mhorbul/259180/comments/2026976" class="js-comment-update" data-remote="" data-type="json" data-upload-policy-authenticity-token="bP+1ASFunnL1M5p9AE99ofUoi466ob8WPc27W7AEbtOWDTJn3wUf3Ke+bjDAWJ0Sf/Ga7t5fOAW1anvWbhES6A==" data-upload-policy-url="/upload/policies/assets" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="GlA7IHw8V05T5bnxiGC4wQ4XgGk381J2FhEo2vxed+Wz/nVAwT71klUc//QAXn3gvH63wnZYQxnC9kDawdlMug=="></div>
+      <div class="js-suggester-container js-previewable-comment-form previewable-comment-form write-selected" data-preview-url="/preview?markdown_unsupported=false" data-preview-authenticity-token="7GF8W51T6xJEUUp1l2ao1OWGnIW5bNR540r7wOWQjSwIbuAXFzkyb+YHNAPZTCcOkWs4XhhomvAnWFORT+IZwg==">
+  <div class="comment-form-head tabnav">
+      <div class="js-toolbar toolbar-commenting">
+  <div class="toolbar-group">
+    <div class="toolbar-item dropdown js-menu-container">
+      <button type="button" tabindex="-1" class="js-menu-target menu-target tooltipped tooltipped-n" aria-label="Add header text">
+        <svg aria-hidden="true" class="octicon octicon-text-size" height="16" version="1.1" viewBox="0 0 18 16" width="18"><path fill-rule="evenodd" d="M13.62 9.08L12.1 3.66h-.06l-1.5 5.42h3.08zM5.7 10.13S4.68 6.52 4.53 6.02h-.08l-1.13 4.11H5.7zM17.31 14h-2.25l-.95-3.25h-4.07L9.09 14H6.84l-.69-2.33H2.87L2.17 14H0l3.3-9.59h2.5l2.17 6.34L10.86 2h2.52l3.94 12h-.01z"></path></svg>
+        <span class="dropdown-caret"></span>
+      </button>
+
+      <div class="dropdown-menu-content js-menu-content">
+        <ul class="dropdown-menu dropdown-menu-s">
+          <button type="button" class="js-toolbar-item dropdown-item dropdown-header1" data-prefix="# " data-ga-click="Markdown Toolbar, click, header1">
+            Header
+          </button>
+          <button type="button" class="js-toolbar-item dropdown-item dropdown-header2" data-prefix="## " data-ga-click="Markdown Toolbar, click, header2">
+            Header
+          </button>
+          <button type="button" class="js-toolbar-item dropdown-item dropdown-header3" data-prefix="### " data-ga-click="Markdown Toolbar, click, header3">
+            Header
+          </button>
+        </ul>
+      </div>
+    </div>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add bold text &lt;ctrl+b&gt;" data-prefix="**" data-suffix="**" data-toolbar-hotkey="b" data-ga-click="Markdown Toolbar, click, bold" data-trim-first="">
+      <svg aria-hidden="true" class="octicon octicon-bold" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M1 2h3.83c2.48 0 4.3.75 4.3 2.95 0 1.14-.63 2.23-1.67 2.61v.06c1.33.3 2.3 1.23 2.3 2.86 0 2.39-1.97 3.52-4.61 3.52H1V2zm3.66 4.95c1.67 0 2.38-.66 2.38-1.69 0-1.17-.78-1.61-2.34-1.61H3.13v3.3h1.53zm.27 5.39c1.77 0 2.75-.64 2.75-1.98 0-1.27-.95-1.81-2.75-1.81h-1.8v3.8h1.8v-.01z"></path></svg>
+    </button>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add italic text &lt;ctrl+i&gt;" data-prefix="_" data-suffix="_" data-toolbar-hotkey="i" data-ga-click="Markdown Toolbar, click, italic" data-trim-first="">
+      <svg aria-hidden="true" class="octicon octicon-italic" height="16" version="1.1" viewBox="0 0 6 16" width="6"><path fill-rule="evenodd" d="M2.81 5h1.98L3 14H1l1.81-9zm.36-2.7c0-.7.58-1.3 1.33-1.3.56 0 1.13.38 1.13 1.03 0 .75-.59 1.3-1.33 1.3-.58 0-1.13-.38-1.13-1.03z"></path></svg>
+    </button>
+  </div>
+
+  <div class="toolbar-group">
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Insert a quote" data-prefix="&gt; " data-multiline="true" data-ga-click="Markdown Toolbar, click, quote" data-surround-with-newlines="">
+      <svg aria-hidden="true" class="octicon octicon-quote" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6.16 3.5C3.73 5.06 2.55 6.67 2.55 9.36c.16-.05.3-.05.44-.05 1.27 0 2.5.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.9 0-2.99-1.52-2.99-4.25 0-3.8 1.75-6.53 5.02-8.42L6.16 3.5zm7 0c-2.43 1.56-3.61 3.17-3.61 5.86.16-.05.3-.05.44-.05 1.27 0 2.5.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.89 0-2.98-1.52-2.98-4.25 0-3.8 1.75-6.53 5.02-8.42l1.14 1.84h-.01z"></path></svg>
+    </button>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Insert code" data-prefix="`" data-suffix="`" data-block-prefix="```" data-block-suffix="```" data-ga-click="Markdown Toolbar, click, code">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+    </button>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a link &lt;ctrl+k&gt;" data-prefix="[" data-suffix="](url)" data-replace-next="url" data-toolbar-hotkey="k" data-scan-for="https?://" data-ga-click="Markdown Toolbar, click, link">
+      <svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>
+    </button>
+  </div>
+
+  <div class="toolbar-group">
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a bulleted list" data-multiline="true" data-prefix="- " data-ga-click="Markdown Toolbar, click, unordered list" data-surround-with-newlines="">
+      <svg aria-hidden="true" class="octicon octicon-list-unordered" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M2 13c0 .59 0 1-.59 1H.59C0 14 0 13.59 0 13c0-.59 0-1 .59-1h.81c.59 0 .59.41.59 1H2zm2.59-9h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1H4.59C4 2 4 2.41 4 3c0 .59 0 1 .59 1zM1.41 7H.59C0 7 0 7.41 0 8c0 .59 0 1 .59 1h.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm0-5H.59C0 2 0 2.41 0 3c0 .59 0 1 .59 1h.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm10 5H4.59C4 7 4 7.41 4 8c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm0 5H4.59C4 12 4 12.41 4 13c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01z"></path></svg>
+    </button>
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a numbered list" data-prefix="1. " data-multiline="true" data-ga-click="Markdown Toolbar, click, ordered list" data-ordered-list="">
+      <svg aria-hidden="true" class="octicon octicon-list-ordered" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 13c0 .59 0 1-.59 1H4.59C4 14 4 13.59 4 13c0-.59 0-1 .59-1h6.81c.59 0 .59.41.59 1H12zM4.59 4h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1H4.59C4 2 4 2.41 4 3c0 .59 0 1 .59 1zm6.81 3H4.59C4 7 4 7.41 4 8c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1zM2 1h-.72c-.3.19-.58.25-1.03.34V2H1v2.14H.16V5H3v-.86H2V1zm.25 8.13c-.17 0-.45.03-.66.06.53-.56 1.14-1.25 1.14-1.89C2.71 6.52 2.17 6 1.37 6c-.59 0-.97.2-1.38.64l.58.58c.19-.19.38-.38.64-.38.28 0 .48.16.48.52 0 .53-.77 1.2-1.7 2.06V10h3l-.09-.88h-.66l.01.01zm-.08 3.78v-.03c.44-.19.64-.47.64-.86 0-.7-.56-1.11-1.44-1.11-.48 0-.89.19-1.28.52l.55.64c.25-.2.44-.31.69-.31.27 0 .42.13.42.36 0 .27-.2.44-.86.44v.75c.83 0 .98.17.98.47 0 .25-.23.38-.58.38-.28 0-.56-.14-.81-.38l-.48.66c.3.36.77.56 1.41.56.83 0 1.53-.41 1.53-1.16 0-.5-.31-.81-.77-.94v.01z"></path></svg>
+    </button>
+
+      <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a task list" data-prefix="- [ ] " data-toolbar-hotkey="L" data-multiline="" data-ga-click="Markdown Toolbar, click, task list" data-surround-with-newlines="">
+        <svg aria-hidden="true" class="octicon octicon-tasklist" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M15.41 9H7.59C7 9 7 8.59 7 8c0-.59 0-1 .59-1h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM9.59 4C9 4 9 3.59 9 3c0-.59 0-1 .59-1h5.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H9.59zM0 3.91l1.41-1.3L3 4.2 7.09 0 8.5 1.41 3 6.91l-3-3zM7.59 12h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H7.59C7 14 7 13.59 7 13c0-.59 0-1 .59-1z"></path></svg>
+      </button>
+  </div>
+
+  <div class="toolbar-group">
+      <div class="toolbar-item select-menu select-menu-modal-right js-menu-container js-select-menu js-load-contents js-saved-reply-container" data-contents-url="/settings/replies">
+        <button type="button" tabindex="-1" class="js-menu-target menu-target tooltipped tooltipped-nw" aria-label="Insert a saved reply" data-ga-click="Markdown Toolbar, click, saved reply">
+          <svg aria-hidden="true" class="octicon octicon-reply" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6 3.5c3.92.44 8 3.125 8 10-2.312-5.062-4.75-6-8-6V11L.5 5.5 6 0v3.5z"></path></svg>
+          <span class="dropdown-caret"></span>
+        </button>
+
+        <div class="select-menu-modal-holder js-menu-content js-navigation-container" aria-hidden="true">
+          <div class="select-menu-modal">
+            <div class="select-menu-header">
+              <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+              <span class="select-menu-title">Select a saved reply</span>
+            </div>
+            <div class="js-select-menu-deferred-content"></div>
+            <div class="select-menu-loading-overlay anim-pulse">
+              <svg aria-hidden="true" class="octicon octicon-octoface" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M14.7 5.34c.13-.32.55-1.59-.13-3.31 0 0-1.05-.33-3.44 1.3-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69 0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35 0-.76.38-1.48 1.02-2.07 1.07-.98 2.9-.46 4.96-.46 2.07 0 3.88-.52 4.96.46.65.59 1.02 1.3 1.02 2.07 0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-nw" aria-label="Directly mention a user or team" data-prefix="@" data-prefix-space="" data-ga-click="Markdown Toolbar, click, mention">
+        <svg aria-hidden="true" class="octicon octicon-mention" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6.58 15c1.25 0 2.52-.31 3.56-.94l-.42-.94c-.84.52-1.89.83-3.03.83-3.23 0-5.64-2.08-5.64-5.72 0-4.37 3.23-7.18 6.58-7.18 3.45 0 5.22 2.19 5.22 5.2 0 2.39-1.34 3.86-2.5 3.86-1.05 0-1.36-.73-1.05-2.19l.73-3.75H8.98l-.11.72c-.41-.63-.94-.83-1.56-.83-2.19 0-3.66 2.39-3.66 4.38 0 1.67.94 2.61 2.3 2.61.84 0 1.67-.53 2.3-1.25.11.94.94 1.45 1.98 1.45 1.67 0 3.77-1.67 3.77-5C14 2.61 11.59 0 7.83 0 3.66 0 0 3.33 0 8.33 0 12.71 2.92 15 6.58 15zm-.31-5c-.73 0-1.36-.52-1.36-1.67 0-1.45.94-3.22 2.41-3.22.52 0 .84.2 1.25.83l-.52 3.02c-.63.73-1.25 1.05-1.78 1.05V10z"></path></svg>
+      </button>
+
+      <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-nw" aria-label="Reference an issue or pull request" data-prefix="#" data-prefix-space="" data-ga-click="Markdown Toolbar, click, reference">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </button>
+  </div>
+</div>
+
+
+    <nav class="tabnav-tabs" role="tablist">
+      <button type="button" class="btn-link tabnav-tab write-tab js-write-tab selected" role="tab" aria-selected="true">Write</button>
+      <button type="button" class="btn-link tabnav-tab preview-tab js-preview-tab" role="tab">Preview</button>
+    </nav>
+  </div>
+
+  <p class="comment-form-stale">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg> The content you are editing has changed. Please try again.
+  </p>
+
+  <div class="write-content js-write-bucket js-uploadable-container js-upload-markdown-image is-default upload-enabled" data-upload-policy-url="/upload/policies/assets" data-upload-policy-authenticity-token="0D6uKe5U/lc5egM5rVXK1yDGKLh4trdJkyquO5gGX8AqzClPED9/+Wv393RtQipkqh852BxIMFobjW62RhMj+w==">
+    <input type="hidden" name="context" value="">
+
+    <input type="hidden" name="saved_reply_id" class="js-saved-reply-id js-resettable-field" value="" data-reset-value="">
+
+    <textarea name="gist_comment[body]" id="gistcomment-2026976-body" placeholder="Leave a comment" aria-label="Comment body" class="form-control input-contrast comment-form-textarea js-comment-field js-improved-comment-field js-task-list-field js-quick-submit js-size-to-fit js-suggester-field js-quote-selection-target js-session-resumable">You don't really need to calculate a Julian Day Number. Ruby has that in the Date and DateTime classes of the standard library.</textarea>
+
+      <p class="drag-and-drop">
+    <span class="default">
+        Attach files by dragging &amp; dropping,
+        <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser" aria-label="Attach files to your comment">
+        <span class="btn-link manual-file-chooser-text">selecting them</span>, or pasting
+        from the clipboard.
+    </span>
+    <span class="loading">
+      <img alt="" height="16" src="./sun_set_and_rise_calculation.rb_files/octocat-spinner-32.gif" width="16"> Uploading your files…
+    </span>
+    <span class="error bad-file">
+      We don’t support that file type.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a
+        PNG, GIF, JPG, DOCX, PPTX, XLSX, TXT, PDF, or ZIP.
+      </span>
+    </span>
+    <span class="error bad-permissions">
+      Attaching documents requires write permission to this repository.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a PNG, GIF, or JPG.
+      </span>
+    </span>
+    <span class="error repository-required">
+      We don’t support that file type.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a PNG, GIF, or JPG.
+      </span>
+    </span>
+    <span class="error too-big">
+      Yowza, that’s a big file.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a file smaller than 10MB.
+      </span>
+    </span>
+    <span class="error empty">
+      This file is empty.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a file that’s not empty.
+      </span>
+    </span>
+    <span class="error hidden-file">
+      This file is hidden.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with another file.
+      </span>
+    </span>
+    <span class="error failed-request">
+      Something went really wrong, and we can’t process that file.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again.</button>
+      </span>
+    </span>
+  </p>
+
+
+    <div class="suggester-container">
+      <div class="suggester js-suggester js-navigation-container" data-url="/autocomplete/emoji">
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-content">
+    <div class="comment">
+  <div class="comment-body markdown-body js-preview-body">
+    <p>Nothing to preview</p>
+  </div>
+</div>
+
+  </div>
+
+  <div class="clearfix">
+    <div class="float-left">
+        <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank" data-ga-click="Markdown Toolbar, click, help">
+          <svg aria-hidden="true" class="octicon octicon-markdown v-align-bottom" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg>
+          Styling with Markdown is supported
+        </a>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit" data-disable-with="">Update comment</button>
+      <button class="btn btn-danger js-comment-cancel-button" type="button" data-confirm-text="Are you sure you want to discard your unsaved changes?">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <div class="comment-form-error comment-form-bottom js-comment-update-error"></div>
+</div>
+
+</form></div>
+
+  </div>
+
+
+
+<!-- Rendered timeline since 2015-09-03 20:45:20 -->
+<div id="partial-timeline-marker" class="js-timeline-marker js-updatable-content" data-url="/mhorbul/259180/show_partial?partial=gist%2Ftimeline_marker&amp;since=1441338320" data-last-modified="Fri, 04 Sep 2015 03:45:20 GMT" data-ga-load="Gist, Comment, public owned">
+</div>
+
+
+      <div class="discussion-timeline-actions">
+          <div class="timeline-comment-wrapper timeline-new-comment js-comment-container">
+  <a href="https://gist.github.com/DouglasAllen"><img alt="@DouglasAllen" class="timeline-comment-avatar" height="44" src="./sun_set_and_rise_calculation.rb_files/887598(1)" width="44"></a>
+
+  <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="https://gist.github.com/mhorbul/259180/comments" class="js-new-comment-form" data-remote="true" data-type="json" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="DJTBz9yTmu+yr43lpTnZnZWYxrpR20BQomvFCQfKvSBMU/wg+qe8QecswFMVqOmf8uneVOIjecPsClT2Q9YCuw=="></div>
+    <div class="timeline-comment">
+      <div class="js-suggester-container  js-previewable-comment-form previewable-comment-form write-selected" data-preview-url="/preview?markdown_unsupported=false&amp;subject=259180&amp;subject_type=Gist" data-preview-authenticity-token="98kthtqmH3qerieHWsZDE0GC7nXHhXXgxBUF9RJdtZMTxrHKUMzGBzz4WfEU7MzJNW9KrmaBO2kAB62kuC8hfQ==">
+  <div class="comment-form-head tabnav">
+      <div class="js-toolbar toolbar-commenting">
+  <div class="toolbar-group">
+    <div class="toolbar-item dropdown js-menu-container">
+      <button type="button" tabindex="-1" class="js-menu-target menu-target tooltipped tooltipped-n" aria-label="Add header text">
+        <svg aria-hidden="true" class="octicon octicon-text-size" height="16" version="1.1" viewBox="0 0 18 16" width="18"><path fill-rule="evenodd" d="M13.62 9.08L12.1 3.66h-.06l-1.5 5.42h3.08zM5.7 10.13S4.68 6.52 4.53 6.02h-.08l-1.13 4.11H5.7zM17.31 14h-2.25l-.95-3.25h-4.07L9.09 14H6.84l-.69-2.33H2.87L2.17 14H0l3.3-9.59h2.5l2.17 6.34L10.86 2h2.52l3.94 12h-.01z"></path></svg>
+        <span class="dropdown-caret"></span>
+      </button>
+
+      <div class="dropdown-menu-content js-menu-content">
+        <ul class="dropdown-menu dropdown-menu-s">
+          <button type="button" class="js-toolbar-item dropdown-item dropdown-header1" data-prefix="# " data-ga-click="Markdown Toolbar, click, header1">
+            Header
+          </button>
+          <button type="button" class="js-toolbar-item dropdown-item dropdown-header2" data-prefix="## " data-ga-click="Markdown Toolbar, click, header2">
+            Header
+          </button>
+          <button type="button" class="js-toolbar-item dropdown-item dropdown-header3" data-prefix="### " data-ga-click="Markdown Toolbar, click, header3">
+            Header
+          </button>
+        </ul>
+      </div>
+    </div>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add bold text &lt;ctrl+b&gt;" data-prefix="**" data-suffix="**" data-toolbar-hotkey="b" data-ga-click="Markdown Toolbar, click, bold" data-trim-first="">
+      <svg aria-hidden="true" class="octicon octicon-bold" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M1 2h3.83c2.48 0 4.3.75 4.3 2.95 0 1.14-.63 2.23-1.67 2.61v.06c1.33.3 2.3 1.23 2.3 2.86 0 2.39-1.97 3.52-4.61 3.52H1V2zm3.66 4.95c1.67 0 2.38-.66 2.38-1.69 0-1.17-.78-1.61-2.34-1.61H3.13v3.3h1.53zm.27 5.39c1.77 0 2.75-.64 2.75-1.98 0-1.27-.95-1.81-2.75-1.81h-1.8v3.8h1.8v-.01z"></path></svg>
+    </button>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add italic text &lt;ctrl+i&gt;" data-prefix="_" data-suffix="_" data-toolbar-hotkey="i" data-ga-click="Markdown Toolbar, click, italic" data-trim-first="">
+      <svg aria-hidden="true" class="octicon octicon-italic" height="16" version="1.1" viewBox="0 0 6 16" width="6"><path fill-rule="evenodd" d="M2.81 5h1.98L3 14H1l1.81-9zm.36-2.7c0-.7.58-1.3 1.33-1.3.56 0 1.13.38 1.13 1.03 0 .75-.59 1.3-1.33 1.3-.58 0-1.13-.38-1.13-1.03z"></path></svg>
+    </button>
+  </div>
+
+  <div class="toolbar-group">
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Insert a quote" data-prefix="&gt; " data-multiline="true" data-ga-click="Markdown Toolbar, click, quote" data-surround-with-newlines="">
+      <svg aria-hidden="true" class="octicon octicon-quote" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6.16 3.5C3.73 5.06 2.55 6.67 2.55 9.36c.16-.05.3-.05.44-.05 1.27 0 2.5.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.9 0-2.99-1.52-2.99-4.25 0-3.8 1.75-6.53 5.02-8.42L6.16 3.5zm7 0c-2.43 1.56-3.61 3.17-3.61 5.86.16-.05.3-.05.44-.05 1.27 0 2.5.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.89 0-2.98-1.52-2.98-4.25 0-3.8 1.75-6.53 5.02-8.42l1.14 1.84h-.01z"></path></svg>
+    </button>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Insert code" data-prefix="`" data-suffix="`" data-block-prefix="```" data-block-suffix="```" data-ga-click="Markdown Toolbar, click, code">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+    </button>
+
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a link &lt;ctrl+k&gt;" data-prefix="[" data-suffix="](url)" data-replace-next="url" data-toolbar-hotkey="k" data-scan-for="https?://" data-ga-click="Markdown Toolbar, click, link">
+      <svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>
+    </button>
+  </div>
+
+  <div class="toolbar-group">
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a bulleted list" data-multiline="true" data-prefix="- " data-ga-click="Markdown Toolbar, click, unordered list" data-surround-with-newlines="">
+      <svg aria-hidden="true" class="octicon octicon-list-unordered" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M2 13c0 .59 0 1-.59 1H.59C0 14 0 13.59 0 13c0-.59 0-1 .59-1h.81c.59 0 .59.41.59 1H2zm2.59-9h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1H4.59C4 2 4 2.41 4 3c0 .59 0 1 .59 1zM1.41 7H.59C0 7 0 7.41 0 8c0 .59 0 1 .59 1h.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm0-5H.59C0 2 0 2.41 0 3c0 .59 0 1 .59 1h.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm10 5H4.59C4 7 4 7.41 4 8c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01zm0 5H4.59C4 12 4 12.41 4 13c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1h.01z"></path></svg>
+    </button>
+    <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a numbered list" data-prefix="1. " data-multiline="true" data-ga-click="Markdown Toolbar, click, ordered list" data-ordered-list="">
+      <svg aria-hidden="true" class="octicon octicon-list-ordered" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 13c0 .59 0 1-.59 1H4.59C4 14 4 13.59 4 13c0-.59 0-1 .59-1h6.81c.59 0 .59.41.59 1H12zM4.59 4h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1H4.59C4 2 4 2.41 4 3c0 .59 0 1 .59 1zm6.81 3H4.59C4 7 4 7.41 4 8c0 .59 0 1 .59 1h6.81c.59 0 .59-.41.59-1 0-.59 0-1-.59-1zM2 1h-.72c-.3.19-.58.25-1.03.34V2H1v2.14H.16V5H3v-.86H2V1zm.25 8.13c-.17 0-.45.03-.66.06.53-.56 1.14-1.25 1.14-1.89C2.71 6.52 2.17 6 1.37 6c-.59 0-.97.2-1.38.64l.58.58c.19-.19.38-.38.64-.38.28 0 .48.16.48.52 0 .53-.77 1.2-1.7 2.06V10h3l-.09-.88h-.66l.01.01zm-.08 3.78v-.03c.44-.19.64-.47.64-.86 0-.7-.56-1.11-1.44-1.11-.48 0-.89.19-1.28.52l.55.64c.25-.2.44-.31.69-.31.27 0 .42.13.42.36 0 .27-.2.44-.86.44v.75c.83 0 .98.17.98.47 0 .25-.23.38-.58.38-.28 0-.56-.14-.81-.38l-.48.66c.3.36.77.56 1.41.56.83 0 1.53-.41 1.53-1.16 0-.5-.31-.81-.77-.94v.01z"></path></svg>
+    </button>
+
+      <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-n" aria-label="Add a task list" data-prefix="- [ ] " data-toolbar-hotkey="L" data-multiline="" data-ga-click="Markdown Toolbar, click, task list" data-surround-with-newlines="">
+        <svg aria-hidden="true" class="octicon octicon-tasklist" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M15.41 9H7.59C7 9 7 8.59 7 8c0-.59 0-1 .59-1h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM9.59 4C9 4 9 3.59 9 3c0-.59 0-1 .59-1h5.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H9.59zM0 3.91l1.41-1.3L3 4.2 7.09 0 8.5 1.41 3 6.91l-3-3zM7.59 12h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H7.59C7 14 7 13.59 7 13c0-.59 0-1 .59-1z"></path></svg>
+      </button>
+  </div>
+
+  <div class="toolbar-group">
+      <div class="toolbar-item select-menu select-menu-modal-right js-menu-container js-select-menu js-load-contents js-saved-reply-container" data-contents-url="/settings/replies">
+        <button type="button" tabindex="-1" class="js-menu-target menu-target tooltipped tooltipped-nw" aria-label="Insert a saved reply" data-ga-click="Markdown Toolbar, click, saved reply">
+          <svg aria-hidden="true" class="octicon octicon-reply" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6 3.5c3.92.44 8 3.125 8 10-2.312-5.062-4.75-6-8-6V11L.5 5.5 6 0v3.5z"></path></svg>
+          <span class="dropdown-caret"></span>
+        </button>
+
+        <div class="select-menu-modal-holder js-menu-content js-navigation-container" aria-hidden="true">
+          <div class="select-menu-modal">
+            <div class="select-menu-header">
+              <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+              <span class="select-menu-title">Select a saved reply</span>
+            </div>
+            <div class="js-select-menu-deferred-content"></div>
+            <div class="select-menu-loading-overlay anim-pulse">
+              <svg aria-hidden="true" class="octicon octicon-octoface" height="32" version="1.1" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M14.7 5.34c.13-.32.55-1.59-.13-3.31 0 0-1.05-.33-3.44 1.3-1-.28-2.07-.32-3.13-.32s-2.13.04-3.13.32c-2.39-1.64-3.44-1.3-3.44-1.3-.68 1.72-.26 2.99-.13 3.31C.49 6.21 0 7.33 0 8.69 0 13.84 3.33 15 7.98 15S16 13.84 16 8.69c0-1.36-.49-2.48-1.3-3.35zM8 14.02c-3.3 0-5.98-.15-5.98-3.35 0-.76.38-1.48 1.02-2.07 1.07-.98 2.9-.46 4.96-.46 2.07 0 3.88-.52 4.96.46.65.59 1.02 1.3 1.02 2.07 0 3.19-2.68 3.35-5.98 3.35zM5.49 9.01c-.66 0-1.2.8-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.54-1.78-1.2-1.78zm5.02 0c-.66 0-1.2.79-1.2 1.78s.54 1.79 1.2 1.79c.66 0 1.2-.8 1.2-1.79s-.53-1.78-1.2-1.78z"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-nw" aria-label="Directly mention a user or team" data-prefix="@" data-prefix-space="" data-ga-click="Markdown Toolbar, click, mention">
+        <svg aria-hidden="true" class="octicon octicon-mention" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M6.58 15c1.25 0 2.52-.31 3.56-.94l-.42-.94c-.84.52-1.89.83-3.03.83-3.23 0-5.64-2.08-5.64-5.72 0-4.37 3.23-7.18 6.58-7.18 3.45 0 5.22 2.19 5.22 5.2 0 2.39-1.34 3.86-2.5 3.86-1.05 0-1.36-.73-1.05-2.19l.73-3.75H8.98l-.11.72c-.41-.63-.94-.83-1.56-.83-2.19 0-3.66 2.39-3.66 4.38 0 1.67.94 2.61 2.3 2.61.84 0 1.67-.53 2.3-1.25.11.94.94 1.45 1.98 1.45 1.67 0 3.77-1.67 3.77-5C14 2.61 11.59 0 7.83 0 3.66 0 0 3.33 0 8.33 0 12.71 2.92 15 6.58 15zm-.31-5c-.73 0-1.36-.52-1.36-1.67 0-1.45.94-3.22 2.41-3.22.52 0 .84.2 1.25.83l-.52 3.02c-.63.73-1.25 1.05-1.78 1.05V10z"></path></svg>
+      </button>
+
+      <button type="button" tabindex="-1" class="js-toolbar-item toolbar-item tooltipped tooltipped-nw" aria-label="Reference an issue or pull request" data-prefix="#" data-prefix-space="" data-ga-click="Markdown Toolbar, click, reference">
+        <svg aria-hidden="true" class="octicon octicon-bookmark" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path fill-rule="evenodd" d="M9 0H1C.27 0 0 .27 0 1v15l5-3.09L10 16V1c0-.73-.27-1-1-1zm-.78 4.25L6.36 5.61l.72 2.16c.06.22-.02.28-.2.17L5 6.6 3.12 7.94c-.19.11-.25.05-.2-.17l.72-2.16-1.86-1.36c-.17-.16-.14-.23.09-.23l2.3-.03.7-2.16h.25l.7 2.16 2.3.03c.23 0 .27.08.09.23h.01z"></path></svg>
+      </button>
+  </div>
+</div>
+
+      <nav class="tabnav-tabs" role="tablist">
+        <button type="button" class="btn-link tabnav-tab write-tab js-write-tab selected" role="tab" aria-selected="true">Write</button>
+        <button type="button" class="btn-link tabnav-tab preview-tab js-preview-tab " role="tab">Preview</button>
+      </nav>
+  </div>
+
+
+  <div class="comment-form-error js-comment-form-error" style="display:none">    There was an error creating your Gist.
+</div>
+  <div class="write-content js-write-bucket js-uploadable-container js-upload-markdown-image upload-enabled is-default" data-upload-policy-url="/upload/policies/assets" data-upload-policy-authenticity-token="PMhBlBEGF2Sed4o2gQZ0iD5nw+58d2OtD4y4M2A0l2PGOsby722Wysz6fntBEZQ7tL7SjhiJ5L6HK3i+viHrWA==">
+
+    <input type="hidden" name="saved_reply_id" class="js-saved-reply-id js-resettable-field" value="" data-reset-value="">
+
+    <textarea name="comment[body]" id="new_comment_field" placeholder="Leave a comment" aria-label="Comment body" class="form-control input-contrast comment-form-textarea js-comment-field js-improved-comment-field js-task-list-field js-quick-submit js-size-to-fit js-suggester-field js-quote-selection-target js-session-resumable"></textarea>
+
+          <p class="drag-and-drop">
+    <span class="default">
+        Attach files by dragging &amp; dropping,
+        <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser" aria-label="Attach files to your comment">
+        <span class="btn-link manual-file-chooser-text">selecting them</span>, or pasting
+        from the clipboard.
+    </span>
+    <span class="loading">
+      <img alt="" height="16" src="./sun_set_and_rise_calculation.rb_files/octocat-spinner-32.gif" width="16"> Uploading your files…
+    </span>
+    <span class="error bad-file">
+      We don’t support that file type.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a
+        PNG, GIF, JPG, DOCX, PPTX, XLSX, TXT, PDF, or ZIP.
+      </span>
+    </span>
+    <span class="error bad-permissions">
+      Attaching documents requires write permission to this repository.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a PNG, GIF, or JPG.
+      </span>
+    </span>
+    <span class="error repository-required">
+      We don’t support that file type.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a PNG, GIF, or JPG.
+      </span>
+    </span>
+    <span class="error too-big">
+      Yowza, that’s a big file.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a file smaller than 10MB.
+      </span>
+    </span>
+    <span class="error empty">
+      This file is empty.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with a file that’s not empty.
+      </span>
+    </span>
+    <span class="error hidden-file">
+      This file is hidden.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again</button> with another file.
+      </span>
+    </span>
+    <span class="error failed-request">
+      Something went really wrong, and we can’t process that file.
+      <input type="file" multiple="multiple" class="manual-file-chooser js-manual-file-chooser">
+      <span class="drag-and-drop-error-info">
+        <button type="button" class="btn-link manual-file-chooser-text">Try again.</button>
+      </span>
+    </span>
+  </p>
+
+
+    <div class="suggester-container">
+      <div class="suggester js-suggester js-navigation-container" data-url="/mhorbul/259180/suggestions">
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-content">
+    <div class="comment">
+  <div class="comment-body markdown-body js-preview-body">
+    <p>Nothing to preview</p>
+  </div>
+</div>
+
+  </div>
+
+  <div class="float-left">
+      <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank" data-ga-click="Markdown Toolbar, click, help">
+        <svg aria-hidden="true" class="octicon octicon-markdown v-align-bottom" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg>
+        Styling with Markdown is supported
+      </a>
+  </div>
+
+
+  <div class="comment-form-error comment-form-bottom js-comment-update-error"></div>
+</div>
+
+
+      <div class="form-actions">
+        <div id="partial-new-comment-form-actions">
+  <button type="submit" class="btn btn-primary" data-disable-with="" data-disable-invalid="">
+    Comment
+  </button>
+</div>
+
+      </div>
+    </div>
+</form></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div class="modal-backdrop js-touch-events"></div>
+</div><!-- /.container -->
+
+    </div><!-- /.gist-pjax-container -->
+  </div>
+
+  </div>
+
+      <div class="container site-footer-container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links float-right">
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact GitHub</a></li>
+      <li><a href="https://developer.github.com/" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com/" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com/" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com/" aria-label="Homepage" class="site-footer-mark" title="GitHub">
+      <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+    <ul class="site-footer-links">
+      <li>© 2017 <span title="0.29735s from github-fe133-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+        <li><a href="https://help.github.com/" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+  
+
+  <div id="ajax-error-message" class="ajax-error-message flash flash-error">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+    <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+    You can't perform that action at this time.
+  </div>
+
+
+    
+    <script crossorigin="anonymous" integrity="sha256-0ZLoD9NuEtMY0oxGaomY68qdIKFaOBIvme3+RGEqA0s=" src="./sun_set_and_rise_calculation.rb_files/frameworks-d192e80fd36e12d318d28c466a8998ebca9d20a15a38122f99edfe44612a034b.js.download"></script>
+    <script async="async" crossorigin="anonymous" integrity="sha256-fNGj+qj+sHeV1i2fElK+ZW0M2yqsJ9i3ZJws6zB6eow=" src="./sun_set_and_rise_calculation.rb_files/github-7cd1a3faa8feb07795d62d9f1252be656d0cdb2aac27d8b7649c2ceb307a7a8c.js.download"></script>
+    
+    
+    
+    
+  <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner d-none">
+    <svg aria-hidden="true" class="octicon octicon-alert" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M8.865 1.52c-.18-.31-.51-.5-.87-.5s-.69.19-.87.5L.275 13.5c-.18.31-.18.69 0 1 .19.31.52.5.87.5h13.7c.36 0 .69-.19.86-.5.17-.31.18-.69.01-1L8.865 1.52zM8.995 13h-2v-2h2v2zm0-3h-2V6h2v4z"></path></svg>
+    <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="https://gist.github.com/mhorbul/259180/3c07d1c62507fe4eb65d5359aefa18046727e338">Reload</a> to refresh your session.</span>
+    <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="https://gist.github.com/mhorbul/259180/3c07d1c62507fe4eb65d5359aefa18046727e338">Reload</a> to refresh your session.</span>
+  </div>
+  <div class="facebox" id="facebox" style="display:none;">
+  <div class="facebox-popup">
+    <div class="facebox-content" role="dialog" aria-labelledby="facebox-header" aria-describedby="facebox-description">
+    </div>
+    <button type="button" class="facebox-close js-facebox-close" aria-label="Close modal">
+      <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+    </button>
+  </div>
+</div>
+
+
+  
+
+
+</body></html>

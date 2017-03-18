@@ -1,0 +1,146 @@
+Ibles.package('Ibles.views', 'Ibles.models');
+Ibles.views.ExploreView = Backbone.View.extend({
+    isFollowing:false,
+    events:{
+        'hover .category':'switchCategory',
+        'click #open-extra':'openExtra',
+        'hover .hover-toggle':'hoverOpen',
+        'click div.alpha': 'openExtra', // allows user clicking background gradient to close menu
+        'click #follow-channel':'toggleFollowing'
+    },
+
+    initialize:function(options){
+        _.bindAll(this, 'setButtonText', 'openHolder', 'closeHolder');
+        if (!_.isEmpty(options.channel)) {
+            this.model = new Ibles.models.ChannelModel({category:options.category, channel:options.channel});
+            this.listenTo(this.model,'change:isFollowing',this.setButtonText);
+        }
+        $(window).resize(_.debounce(this.resizeExplore, 50));
+        //we have to set the offset in a timeout because the adcode has to load and resize the page
+        window.setTimeout(function(){
+            var currentOffset = $('.aspace-wrap').outerHeight()+$('#gbl-header').outerHeight();
+            $('#explore-header').affix({offset:{top:currentOffset, bottom:0}});
+        },1000);
+
+        var that = this;
+        $(window).scroll(function(e){
+            if ($('#explore-header').hasClass('affix') && $('#holder').is(':visible')){
+                that.closeHolder();
+            }
+        });
+
+        this.resizeExplore();
+    },
+
+    resizeExplore : function(){
+        var newHeight = this.$('.category.open .channels').height();
+
+        this.$('#explore-extra').height(newHeight);
+    },
+
+    switchCategory:function(e){
+        if (!$(e.currentTarget).hasClass('open')){
+            this.$('.category.open').removeClass('open');
+            $(e.currentTarget).addClass('open');
+            this.resizeExplore();
+        };
+    },
+
+    openExtra:function(){
+        if (this.$('#holder').is(':visible')){
+            this.closeHolder();
+        } else {
+            this.openHolder();
+            this.resizeExplore();
+        }
+    },
+
+    hoverOpen:function(e){
+        var that = this;
+        if (e.type === 'mouseleave'){
+            this.hovering = false;
+            window.clearTimeout(this.intentTimeout)
+            this.hoverTimeout = window.setTimeout(function(){
+                if (that.hovering === false){
+                    that.closeHolder();
+                }
+            }, 50);
+        }
+        else if (e.type === 'mouseenter'){
+            this.hovering = true;
+            window.clearTimeout(this.hoverTimeout)
+            this.intentTimeout = window.setTimeout(function(){
+                if (that.hovering === true){
+                    that.openHolder();
+                    that.resizeExplore();
+                }
+            }, 250)
+
+        }
+    },
+
+//    these functions keep the queue from building up a bunch of open and close actions in case you are close to both triggering a hover and a fixed header scroll event.
+    openHolder:function(){
+        this.$('#holder').clearQueue('holderQueue', true, true);
+        $('#explore-header').addClass('open');
+        this.$('#holder').slideDown({queue:'holderQueue'});
+        this.$('#holder').dequeue('holderQueue');
+    },
+
+    closeHolder:function(){
+        this.$('#holder').stop('holderQueue', true, true);
+        this.$('#holder').slideUp({queue:'holderQueue', complete: function(){$('#explore-header').removeClass('open');}})
+        this.$('#holder').dequeue('holderQueue');
+    },
+
+    setButtonText:function(){
+        if (this.model.get('isFollowing')){
+            this.$('#follow-channel').addClass('following');
+        } else {
+            this.$('#follow-channel').removeClass('following');
+        }
+    },
+    toggleFollowing:function(){
+        if (Ibles.session.authenticated()){
+            this.model.toggleFollowing();
+        }
+    }
+
+});
+Ibles.models.ChannelModel = Backbone.Model.extend({
+    defaults:{
+        isFollowing: false,
+        category: null,
+        channel:null
+    },
+    initialize:function(){
+        if (Ibles.session.authenticated()){
+            this.setFollowing();
+        }
+    },
+    toggleFollowing:function(){
+        var that = this;
+        return Ibles.API.postRequest('setFollowing', {
+            categoryName:this.get('category'),
+            channelName:this.get('channel'),
+            following: !this.get('isFollowing')
+        },{
+            success:function(data){
+                that.set('isFollowing',data.following);
+            }
+        }, ['following']);
+
+
+    },
+    setFollowing: function(){
+        var that = this;
+        return Ibles.API.getRequest('isFollowing', {
+            categoryName:this.get('category'),
+            channelName:this.get('channel')
+        },{
+            success:function(data){
+                that.set({isFollowing:data.isFollowing})
+            }
+        },['isFollowing']);
+    }
+})
