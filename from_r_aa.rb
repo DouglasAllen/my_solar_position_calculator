@@ -72,17 +72,12 @@ sunrise_time = solar_noon - sun_ha(jc, latitude) * 4.0 / 1440.0
 sunset_time = solar_noon + sun_ha(jc, latitude) * 4.0 / 1440.0
 
 sunlight_duration = (8.0 * sun_ha(jc, latitude)) / 60.0
-sunset_time *= 24.0
-solar_noon *= 24.0
-sunrise_time *= 24.0
+set_jd = jd + sunset_time
+noon_jd = jd + solar_noon
+rise_jd = jd + sunrise_time
 
-# puts eot(jc)
-# puts solar_noon
-# puts sun_ha(jc, latitude)
+puts DateTime.jd(rise_jd - tz_offset / 24.0).to_time
+puts DateTime.jd(noon_jd - tz_offset / 24.0).to_time
+puts DateTime.jd(set_jd - tz_offset / 24.0).to_time
 puts sunlight_duration
-puts DateTime.new(
-  date.year, date.month, date.day, sunrise_time - tz_offset).to_time
-puts DateTime.new(
-  date.year, date.month, date.day, solar_noon - tz_offset).to_time
-puts DateTime.new(
-  date.year, date.month, date.day, sunset_time - tz_offset).to_time
+
