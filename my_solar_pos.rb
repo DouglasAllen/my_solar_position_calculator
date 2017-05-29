@@ -312,7 +312,8 @@ if __FILE__ == $PROGRAM_NAME
 
   puts Time.now.localtime
   ajd = Time.now.localtime.to_datetime.ajd.to_f
-  gmsa = gmsa0(ajd) * R2D
+  p ajd.floor - 0.5
+  gmsa = (gmsa0(ajd.floor - 0.5) * R2D * 15) % 360
   gha = gha0(ajd) * R2D
   tls = tls(jct(ajd)) * R2D
   ra = alpha(jct(ajd)) * R2D

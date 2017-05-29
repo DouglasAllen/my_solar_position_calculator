@@ -10,7 +10,7 @@ require_relative 'my_solar_pos'
 class TestMSP100 < Test::Unit::TestCase
   include MSP
   def setup
-    @time = Time.new(2017, 3, 17, 13, 3, 12.48720407273)
+    @time = Time.new(2017, 3, 17, 18, 3, 12.48720407273)
     @ajd = @time.to_datetime.ajd.to_f
     @lat = 41.9475 * D2R
     @lon = -88.743 * D2R

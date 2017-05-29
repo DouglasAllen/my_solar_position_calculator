@@ -1,0 +1,14 @@
+#menu, .noprint {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
+a#skipnav + div.text {
+	margin-left: 0 !important;
+	width: 700px !important;
+}
+
+pre {
+    color:       #000000;
+}

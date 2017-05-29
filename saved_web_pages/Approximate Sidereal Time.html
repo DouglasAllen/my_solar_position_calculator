@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://aa.usno.navy.mil/faq/docs/GAST.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Approximate Sidereal Time</title>
+
+<meta name="keywords" content="Greenwich mean sidereal time, Greenwich apparent sidereal time, sidereal time">
+<meta name="description" content="Information on calculating Greenwich mean sidereal time (GMST) and Greenwich apparent sidereal time (GAST).">
+<meta name="owner" content="
+    George Kaplan
+    Astronomical Applications Department
+    U.S. Naval Observatory
+    3450 Massachusetts Ave, NW
+    Washington, DC  20392-5420
+">
+<link rel="stylesheet" href="./Approximate Sidereal Time_files/default.css" type="text/css">
+<script type="text/javascript" src="./Approximate Sidereal Time_files/default.js.download"></script>
+<script type="text/javascript" src="./Approximate Sidereal Time_files/stmenu.js.download"></script><style>.stctb{width:auto;height:auto;border-style:none;background-color:transparent;background-image:none;}
+.stctr{width:auto;height:auto;border-style:none;background-color:transparent;background-image:none;}
+.stctd{height:auto;border-style:none;background-color:transparent;background-image:none;}
+.stcdv{margin:0px;padding:0px;background-color:transparent;background-image:none;}
+.stca{border-style:none;margin:0px;padding:0px;background-color:transparent;background-image:none;}
+</style>
+<link rel="stylesheet" href="./Approximate Sidereal Time_files/print.css" type="text/css" media="print">
+<!--<base href="http://aa.usno.navy.mil/">--><base href=".">
+
+<script type="text/javascript">
+   	if (self === top) {
+       	var antiClickjack = document.getElementById("antiClickjack");
+       	antiClickjack.parentNode.removeChild(antiClickjack);
+   	} else {
+       		top.location = self.location;
+   	}
+	</script><meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body onunload="CloseWindow()">
+
+<!--==============================================-->
+<!--============== enable tooltips ===============-->
+<!--==============================================-->
+<div id="dhtmltooltip"></div>
+<script type="text/javascript">
+<!--
+    var tipobj=document.all? document.all["dhtmltooltip"] : document.getElementById? document.getElementById("dhtmltooltip") : ""
+//-->
+</script>
+
+<!--==============================================-->
+<!--================= page title =================-->
+<!--==============================================-->
+<div class="Title" style="padding-top: 25px; left: 150px; width: 535px; height: 40px;">
+    Approximate Sidereal Time
+</div>
+<div id="map" style="position: absolute; top:0px; left:0px;">
+    <map name="home">
+        <area shape="rect" coords="0,0,695,76" href="http://aa.usno.navy.mil/" alt="Astronomical Applications Dept.">
+    </map>
+    <img src="./Approximate Sidereal Time_files/blank.gif" width="695" height="76" border="0" usemap="#home" alt="Astronomical Applications Dept.">
+</div>
+<div id="topruler" style="margin-left: 5px; border-bottom: 0px blue solid; background-color: transparent; padding-top: 55px; width: 695px;">&nbsp;</div>
+
+<!--==============================================-->
+<!--================= navigation =================-->
+<!--==============================================-->
+<!-- navigation menu (CSS) -->
+
+<a href="http://aa.usno.navy.mil/faq/docs/GAST.php#skipnav" style="display: none;">Skip navigation</a>
+<div id="menu">
+  <div id="toplogo">
+  <div style="margin: 0 0.5em 0.5em 0.75em; padding-top: 0.5em;">
+  <a class="img" href="http://www.usno.navy.mil/USNO/" title="U.S. Naval Observatory website"></a></div>
+<!--  <img src="graphics/USNODomeatNight_painted.png" width="100" height="100" alt="USNO" border="0"></a> -->
+  <div style="margin: 0 1.1em 0.5em;"><a href="http://aa.usno.navy.mil/index.php">Astronomical<br>
+  Applications<br>
+  Department</a></div>
+  </div>
+  <div id="service">
+   <ul id="data"><li style="z-index: 9;"><a href="http://aa.usno.navy.mil/data/">Data Services</a>
+        <ul>
+         <li><a href="http://aa.usno.navy.mil/data/docs/RS_OneDay.php">Complete Sun and Moon Data for One Day</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/docs/RS_OneYear.php">Rise/Set/Twilight Table for an Entire Year</a></li>
+         <li><a href="http://aa.usno.navy.mil/imagery/moon">What the Moon Looks Like Now</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/docs/MoonPhase.php">Dates of Primary Phases of the Moon</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/docs/AltAz.php">Altitude &amp; Azimuth of Sun or Moon</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/docs/earthview.php">Day/Night Across the Earth</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/docs/EarthSeasons.php">Equinoxes, Solstices, Perihelion, Aphelion</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/docs/JulianDate.php">Julian Date/Calendar Date Conversion</a></li>
+         <li><a href="http://aa.usno.navy.mil/data/">more...</a></li>
+        </ul>
+       </li>
+   </ul>
+   <ul id="faq"><li style="z-index: 8;"><a href="http://aa.usno.navy.mil/faq/">Information Center</a>
+        <ul>
+         <li><a href="http://aa.usno.navy.mil/faq/docs/world_tzones.php">World Time Zones</a></li>
+         <li><a href="http://aa.usno.navy.mil/faq/docs/us_tzones.php">U.S. Time Zones</a></li>
+         <li><a href="http://aa.usno.navy.mil/faq/docs/moon_phases.php">Phases of the Moon</a></li>
+         <li><a href="http://aa.usno.navy.mil/faq/docs/UT.php">Universal Time and GMT</a></li>
+         <li><a href="http://aa.usno.navy.mil/faq/docs/daylight_time.php">Daylight Time</a></li>
+         <li><a href="http://aa.usno.navy.mil/faq/docs/rs_solstices.php">Sunrise and Sunset Times Near the Solstices</a></li>
+         <li><a href="http://aa.usno.navy.mil/faq/">more...</a></li>
+        </ul>
+       </li>
+   </ul>
+   <ul id="pub"><li style="z-index: 7;"><a href="http://aa.usno.navy.mil/publications/">Publications</a>
+        <ul>
+         <li><a href="http://aa.usno.navy.mil/publications/docs/almanacs.php">The Almanacs</a></li>
+		 <li><a href="http://asa.usno.navy.mil/">Astronomical Almanac Online</a></li>
+         <li><a href="http://aa.usno.navy.mil/publications/docs/usnopubs.php">USNO Special Publications</a></li>
+		 <li><a href="http://aa.usno.navy.mil/publications/docs/reports.php">Technical Reports</a></li>
+         <li><a href="http://aa.usno.navy.mil/publications/">more...</a></li>
+        </ul>
+       </li>
+   </ul>
+   <ul id="soft"><li style="z-index: 6;"><a href="http://aa.usno.navy.mil/software/">Software</a>
+        <ul>
+         <li><a href="http://aa.usno.navy.mil/software/mica/micainfo.php">MICA</a></li>
+         <li><a href="http://aa.usno.navy.mil/software/novas/novas_info.php">NOVAS</a></li>
+         <li><a href="http://aa.usno.navy.mil/software/">more...</a></li>
+        </ul>
+       </li>
+   </ul>
+   <ul id="about"><li style="z-index: 4; border-bottom: 1px #000000 solid; padding-bottom: 2px;">
+   <a href="http://aa.usno.navy.mil/about/">About AA</a>
+        <ul>
+         <li><a href="http://aa.usno.navy.mil/about/staff/docs/mission.php">Mission</a></li>
+		 <li><a href="http://aa.usno.navy.mil/about/staff/docs/place.php">Organization</a></li>
+         <li><a href="http://aa.usno.navy.mil/about/staff/docs/history.php">History</a></li>
+         <li><a href="http://aa.usno.navy.mil/about/staff/docs/address.php">Contact</a></li>
+         <li><a href="http://aa.usno.navy.mil/about/">more...</a></li>
+        </ul>
+       </li>
+   </ul>
+  </div>
+  <div id="site">
+   <ul>
+       <li style="padding-bottom: 2px;"><a href="http://aa.usno.navy.mil/AAmap.php">Sitemap</a></li>
+   </ul>
+  </div>
+</div>
+
+<a id="skipnav"></a>
+
+<!-- navigation menu end -->
+
+<!--==============================================-->
+<!--=================== content ==================-->
+<!--==============================================-->
+<div class="text" style="width: 545px; margin-left: 135px; padding-top: 11px;">
+
+
+<p>Sidereal time is a system of timekeeping based on the rotation of the Earth with
+respect to the fixed stars in the sky.  More specifically, it is the measure of the
+hour angle of the vernal equinox.  If the hour angle is measured with respect to the
+true equinox, <span class="italic">apparent sidereal time</span> is being measured.
+If the hour angle is measured with respect to the mean equinox, <span class="italic">mean
+sidereal time</span> is being measured. When the measurements are made with respect to
+the meridian at Greenwich, the times are referred to as Greenwich mean sidereal time
+(GMST) and Greenwich apparent sidereal time (GAST).</p>
+
+<p>Given below is a simple algorithm for computing apparent sidereal time
+to an accuracy of about 0.1&nbsp;second, equivalent to about
+1.5&nbsp;arcseconds on the sky.  The input time required by the algorithm is
+represented as a Julian date (<a href="http://aa.usno.navy.mil/data/docs/JulianDate.php">Julian
+dates</a> can be used to determine <a href="http://aa.usno.navy.mil/faq/docs/UT.php">Universal Time</a>.)</p>
+
+<p>Let JD be the Julian date of the time of interest.&nbsp; Let
+JD<span class="subscript">0</span> be the Julian date of the previous midnight
+(0<span class="superscript">h</span>) UT (the value of JD<span class="subscript">0</span>
+will end in .5 exactly), and let H be the hours of UT elapsed since
+that time.  Thus we have <span class="formula">JD = JD<span class="subscript">0</span> +
+H/24</span>.</p>
+
+<p>For both of these Julian dates, compute the number of
+days and fraction (+&nbsp;or&nbsp;-) from 2000 January 1,
+12<span class="superscript">h</span> UT, Julian date 2451545.0:</p>
+<p class="formula center">
+   D = JD - 2451545.0<br>
+   D<span class="subscript">0</span> = JD<span class="subscript">0</span> - 2451545.0
+</p>
+
+<p>Then the Greenwich mean sidereal time in hours is</p>
+<p class="formula center">
+   GMST = 6.697374558 + 0.06570982441908 D<span class="subscript">0</span>
+        + 1.00273790935 H + 0.000026 T<span class="superscript">2</span>
+</p>
+<p>where <span class="formula">T = D/36525</span> is the number of
+<i>centuries</i> since the year 2000; thus
+the last term can be omitted in most applications.
+It will be necessary to reduce GMST to the range
+0<span class="superscript">h</span> to 24<span class="superscript">h</span>.
+Setting H = 0 in the above formula yields the Greenwich mean sidereal time
+at 0<span class="superscript">h</span> UT, which is tabulated in
+<i>The Astronomical Almanac</i>.</p>
+
+<p>The following alternative formula can be used with a loss of precision
+of 0.1&nbsp;second per century:</p>
+<p class="formula center">
+   GMST = 18.697374558 + 24.06570982441908 D
+</p>
+<p>where, as above, GMST must be reduced to the range 0<span class="superscript">h</span>
+to 24<span class="superscript">h</span>. The equations for GMST given above are
+adapted from those given in Appendix A of <a href="http://aa.usno.navy.mil/publications/docs/Circular_163.php"><i>USNO Circular No.
+163</i> (1981)</a>.
+</p>
+
+<p>The Greenwich apparent sidereal time is obtained by adding a correction to the Greenwich
+mean sidereal time computed above.  The correction term is called the
+<i>nutation in right ascension</i> or the
+<i>equation of the equinoxes</i>.  Thus,</p>
+<p class="formula center">
+   GAST = GMST + eqeq.
+</p>
+<p>The equation of the equinoxes is given as <span class="formula">
+eqeq = Δψ cos ε</span> where Δψ, the nutation in longitude,
+is given in hours approximately by</p>
+<p class="formula center">
+Δψ ≈ -0.000319 sin Ω - 0.000024 sin 2L
+</p>
+<p>with Ω, the Longitude of the ascending node of the Moon, given as</p>
+<p class="formula center">
+Ω = 125.04 - 0.052954 D,
+</p>
+<p>and L, the Mean Longitude of the Sun, given as</p>
+<p class="formula center">
+L = 280.47 + 0.98565 D.
+</p>
+<p>ε is the obliquity and is given as</p>
+<p class="formula center">
+ε = 23.4393 - 0.0000004 D.
+</p>
+<p>The above expressions for Ω, L, and ε are all expressed in degrees.</p>
+
+<p>The mean or apparent sidereal time <i>locally</i> is found by
+obtaining the local longitude in degrees, converting it to hours by dividing by 15,
+and then adding it to or subtracting it from the Greenwich time depending on whether
+the local position is east (add) or west (subtract) of Greenwich.</p>
+
+<p>If you need apparent sidereal time to better than 0.1&nbsp;second accuracy
+on a regular basis, consider using the Multiyear Interactive Computer Almanac,
+<a href="http://aa.usno.navy.mil/software/mica/micainfo.php">MICA</a>.  MICA provides very accurate almanac
+data in tabular form for a range of years.</p>
+
+<br>
+
+<p class="sectionheading">
+NOTES ON ACCURACY
+</p>
+
+<p>The maximum error resulting from the use of the above formulas for sidereal time
+over the period 2000-2100 is 0.432&nbsp;seconds; the RMS error is 0.01512&nbsp;seconds.  To
+obtain sub-second accuracy in sidereal time, it is important to use the form of
+Universal Time called <a href="http://aa.usno.navy.mil/faq/docs/UT.php">UT1</a> as the basis for the input
+Julian date.</p>
+
+<p>The maximum value of the equation of the equinoxes is about 1.1 seconds, so if an
+error of ~1&nbsp;second is unimportant, the last series of formulas can be skipped entirely.
+In this case set eqeq&nbsp;= 0 and GAST&nbsp;= GMST, and use either UT1 or <a href="http://aa.usno.navy.mil/faq/docs/UT.php">UTC</a> as the Universal Time basis for the input Julian date.</p>
+
+
+
+</div> <!-- class="text" -->
+
+<!--==============================================-->
+<!--================== Tag Line ==================-->
+<!--==============================================-->
+<div class="text noprint" style="margin-top: 0px; width: 545px; margin-left: 135px;">
+    <div style="width: 100%; margin-bottom: 5px; margin-top: -20px; border-bottom: 1px blue solid;">&nbsp;</div>
+    <div class="footer" style="width: 545px;">
+     <div style="width: 100%; margin-bottom: 5px; text-align: center;"><a href="http://aa.usno.navy.mil/data/">Data&nbsp;Services</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/faq/">Information&nbsp;Center</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/publications/">Publications</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/software/">Software</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/about/">About AA</a></div>
+    <div style="width: 100%; margin-bottom: 5px; padding-bottom: 5px; text-align: center; border-bottom: 1px blue solid;">
+    <a href="http://aa.usno.navy.mil/index.php">AA Home</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/AAmap.php">Site&nbsp;Map</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/AAhelp.php">Help</a>&nbsp;|&nbsp;<a href="http://aa.usno.navy.mil/about/staff/docs/ExternalLinksDisclaimer.php">External Links Disclaimer</a></div>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+            <td width="50%" align="left">
+                last modified: 14 June 2011 14:04
+            </td>
+            <td width="50%" align="right">
+                <a href="http://validator.w3.org/check?uri=referer&amp;charset=%28detect+automatically%29&amp;doctype=%28detect+automatically%29&amp;ss=1&amp;verbose=1" target="_blank"><img border="0" src="./Approximate Sidereal Time_files/valid-html401.png" alt="Valid HTML 4.01!" height="18" width="50"></a>
+            </td>
+        </tr>
+    </tbody></table>
+    </div>  <!-- class="footer" -->
+</div>  <!-- class="text" -->
+
+
+
+
+</body></html>

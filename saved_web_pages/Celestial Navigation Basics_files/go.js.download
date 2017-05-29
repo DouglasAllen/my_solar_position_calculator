@@ -1,0 +1,9 @@
+      function go(page){
+        if( (typeof window.top.frames[0]) != "undefined"){
+          if( (typeof window.top.frames[0].tag) != "undefined"){
+            window.top.frames[0].tag=page;
+            window.top.frames[0].offlight(page);
+          }
+	}
+        return true;
+      }
